@@ -19,6 +19,7 @@
     "gulp-watch": "^4.2.4",
     "node-notifier": "^4.3.1",
     "react": "^0.13.1",
+    "react-deep-link-state": "0.0.2",
     "reactfire": "^0.4.0",
     "reactify": "^1.1.0",
     "vinyl-source-stream": "^1.1.0",

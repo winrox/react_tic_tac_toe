@@ -1,15 +1,11 @@
 var React = require('react');
 
+var newValue = 0;
+
 module.exports = React.createClass({
 
-  getInitialState: function() {
-    return {
-      id: 'id-test',
-      src: 'src-test'
-    }
-  },
-
   render: function() {
+
     return(
         <img
           id={this.props.tile.id}
@@ -19,6 +15,10 @@ module.exports = React.createClass({
   },
 
   handleTileClick: function() {
-    return {} //hook this up later
+    console.log("a click was heard on tile " + this.props.tile.id)
+    newValue+=1;
+    console.log("newValue = " + newValue);
+
+    return (newValue);
   }
 });

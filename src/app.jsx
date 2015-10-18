@@ -4,9 +4,9 @@ var FireBase = require('firebase');
 var Message = require('./message');
 var ScoreBoard = require('./scoreboard');
 var GameBoard = require('./game_board');
-var Tile = require('./tile');
 var PlayAgain = require('./play_again');
-var rootUrl = 'https://react-tic-tac-toe.firebaseio.com//';
+
+// var rootUrl = 'https://react-tic-tac-toe.firebaseio.com//';
 
 var App = React.createClass({
   mixins: [ ReactFire ], // this allows you to use any methods from ReacFire (bindAsObject here)
@@ -28,7 +28,8 @@ var App = React.createClass({
       ],
       scoreX: 0,
       scoreY: 0,
-      alertMessage: ''
+      alertMessage: '',
+      clickCounter: 0
     }
   },
 
@@ -64,15 +65,22 @@ var App = React.createClass({
           </div>
         </div>
         <div className="" id="">
-          <GameBoard tiles={this.state.tiles} winnerFound={this.state.winnerFound}/>
+          <GameBoard
+            tiles={this.state.tiles}
+            winnerFound={this.state.winnerFound}
+            clickCounter={this.state.clickCounter}
+            alertMessage={this.state.alertMessage}
+          />
         </div>
       </div>
     );
   },
 
-  handleDataLoaded: function() {
-    this.setState({loaded: true});
-  }
+
+
+  // handleDataLoaded: function() {
+  //   this.setState({loaded: true});
+  // }
 });
 
 
