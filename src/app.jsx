@@ -33,7 +33,9 @@ var App = React.createClass({
           Tic Tac Toe
         </h1>
         <div id="game-header">
-
+          <div className="table" id="scoreboard">
+            <ScoreBoard />
+          </div>
           <div id="Message">
              <Message />
           </div>
@@ -62,9 +64,7 @@ var element = React.createElement(App, {});
 React.render(element, document.querySelector('.container'));
 
 
-// <div className="table" id="scoreboard">
-//   <ScoreBoard />
-// </div>
+
 
         //
         // <div className="table" id="game-table">
