@@ -29,7 +29,7 @@ var App = React.createClass({
     return(
       <div className="col-md-8">
         <h1 className="text-center">
-          <img src="https://www.codementor.io/assets/tutorial_icon/reactjs.png" />
+          <img className="react-logo" src="https://www.codementor.io/assets/tutorial_icon/reactjs.png" />
           Tic Tac Toe
         </h1>
         <div id="game-header">
@@ -43,9 +43,6 @@ var App = React.createClass({
       </div>
     );
   },
-
-
-
 });
 
 // this.props.tiles = {[

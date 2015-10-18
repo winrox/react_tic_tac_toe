@@ -7,7 +7,7 @@ module.exports = React.createClass({
       <table className="col-sm-2">
         <thead>
           <tr>
-            <td colspan="2">Scoreboard</td>
+            <td colSpan="2">scoreboard</td>
           </tr>
         </thead>
         <tr>

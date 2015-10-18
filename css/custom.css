@@ -86,3 +86,12 @@ table td {
   border-width: 2px;
   border-color: black;
   border-collapse: collapse;
+
+
+
+  /* --------NEWER------------ */
+
+  .react-logo {
+    width: 15%;
+    height: auto;
+  }
