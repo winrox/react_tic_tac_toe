@@ -6,32 +6,32 @@ module.exports = React.createClass({
     console.log(this.props.tiles);
     return (
       <div>
-         <h1>GAMEBOARD</h1>
+         {this.rendertTiles()}
       </div>
     )
   },
 
-  // rendertTiles: function() {
-  //   if(!this.props.tiles) {
-  //     return
-  //   } else {
-  //     var tiles = [];
-  //
-  //     for(var key in this.props.tiles) {
-  //       var tiles = this.props.tiles[key];
-  //       tile.key = key;
-  //
-  //       tiles.push(
-  //         <Tile
-  //           tile = {this.props.tiles[key]}
-  //           key = {key}
-  //           >
-  //         </Tile>
-  //       )
-  //     }
-  //     return tiles;
-  //   }
-  // },
+  rendertTiles: function() {
+    if(!this.props.tiles) {
+      return
+    } else {
+      var children = [];
+
+      for(var key in this.props.tiles) {
+        var tile = this.props.tiles[key];
+        tile.key = key;
+
+        children.push(
+          <Tile
+            tile = {this.props.tiles[key]}
+            key = {key}
+            >
+          </Tile>
+        )
+      }
+      return children;
+    }
+  },
 
 // {this.renderGrid(this.renderTiles())}
 

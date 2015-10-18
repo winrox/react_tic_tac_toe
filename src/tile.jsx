@@ -13,8 +13,8 @@ module.exports = React.createClass({
     return(
       <td>
         <img
-          id={this.props.tiles.id}
-          src={this.props.tiles.src}
+          id={this.props.tile.id}
+          src={this.props.tile.src}
           onClick={this.handleTileClick}/>
       </td>
     )
