@@ -14,7 +14,17 @@ var App = React.createClass({
     return {
       winnerFound: false,
       loaded: false,
-      items: {},
+      tiles: [
+        {id: "a1", src: "img/blank.png"},
+        {id: "a2", src: "img/blank.png"},
+        {id: "a3", src: "img/blank.png"},
+        {id: "b1", src: "img/blank.png"},
+        {id: "b2", src: "img/blank.png"},
+        {id: "b3", src: "img/blank.png"},
+        {id: "c1", src: "img/blank.png"},
+        {id: "c2", src: "img/blank.png"},
+        {id: "c3", src: "img/blank.png"}
+      ],
       scoreX: 0,
       scoreY: 0
     }
@@ -22,7 +32,7 @@ var App = React.createClass({
 
   // componentWillMount: function(){
   //   this.fireBase = new FireBase(rootUrl + 'items/'); //new instance of firebase
-  //   this.bindAsObject(this.fireBase, 'items'); //get/set info in db items
+  //   this.bindAsArray(this.fireBase, 'items'); //get/set info in db items
   //   this.fireBase.on('value', this.handleDataLoaded); //lets us listen to firebase value event
   //   // this.fireBase.on("child_added", function(items) {
   //   //   this.items.push(items.val());
@@ -49,7 +59,7 @@ var App = React.createClass({
           </div>
         </div>
         <div className="" id="">
-          <GameBoard />
+          <GameBoard tiles={this.state.tiles}/>
         </div>
       </div>
     );

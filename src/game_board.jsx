@@ -3,6 +3,7 @@ var Tile = require('./tile');
 
 module.exports = React.createClass({
   render: function() {
+    console.log(this.props.tiles);
     return (
       <div>
          <h1>GAMEBOARD</h1>
