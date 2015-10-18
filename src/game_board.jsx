@@ -3,58 +3,66 @@ var Tile = require('./tile');
 
 module.exports = React.createClass({
   render: function() {
-    console.log(this.props.tiles);
     return (
       <div>
-         {this.rendertTiles()}
+         {this.renderGrid()}
       </div>
     )
   },
 
-  rendertTiles: function() {
-    if(!this.props.tiles) {
-      return
-    } else {
-      var children = [];
+  getTileId: function(id) {
+    for(var key in this.props.tiles) {
+      var tile = this.props.tiles[key];
 
-      for(var key in this.props.tiles) {
-        var tile = this.props.tiles[key];
-        tile.key = key;
-
-        children.push(
-          <Tile
-            tile = {this.props.tiles[key]}
-            key = {key}
-            >
-          </Tile>
-        )
+      if(tile.id == id) {
+        return tile;
       }
-      return children;
     }
   },
 
-// {this.renderGrid(this.renderTiles())}
+  renderGrid: function() {
+    var tyle = this.props.tiles
 
-/* May need to use the proper keys from firebase to identify each tile */
-  // renderGrid: function() {
-  //   return <table>
-  //     <tr>
-  //       {tiles[0]}
-  //       {tiles[1]}
-  //       {tiles[2]}
-  //     </tr>
-  //     <tr>
-  //       {tiles[3]}
-  //       {tiles[4]}
-  //       {tiles[5]}
-  //     </tr>
-  //     <tr>
-  //       {tiles[6]}
-  //       {tiles[7]}
-  //       {tiles[8]}
-  //     </tr>
-  //   </table>
-  // }
+    return (
+      <div>
+        <table>
+          <tr>
+            <td>
+              <Tile tile={this.getTileId('a1')} />
+            </td>
+            <td>
+              <Tile tile={this.getTileId('a2')} />
+            </td>
+            <td>
+              <Tile tile={this.getTileId('a3')} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Tile tile={this.getTileId('b1')} />
+            </td>
+            <td>
+              <Tile tile={this.getTileId('b2')} />
+            </td>
+            <td>
+              <Tile tile={this.getTileId('b3')} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Tile tile={this.getTileId('c1')} />
+            </td>
+            <td>
+              <Tile tile={this.getTileId('c2')} />
+            </td>
+            <td>
+              <Tile tile={this.getTileId('c3')} />
+            </td>
+          </tr>
+        </table>
+      </div>
+    );
+  }
 });
 
 //

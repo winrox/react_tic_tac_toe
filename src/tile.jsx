@@ -11,12 +11,10 @@ module.exports = React.createClass({
 
   render: function() {
     return(
-      <td>
         <img
           id={this.props.tile.id}
           src={this.props.tile.src}
           onClick={this.handleTileClick}/>
-      </td>
     )
   },
 

@@ -26,7 +26,8 @@ var App = React.createClass({
         {id: "c3", src: "img/blank.png"}
       ],
       scoreX: 0,
-      scoreY: 0
+      scoreY: 0,
+      alertMessage: ''
     }
   },
 
@@ -52,14 +53,14 @@ var App = React.createClass({
         </h1>
         <div id="game-header">
           <div className="table" id="scoreboard">
-            <ScoreBoard />
+            <ScoreBoard  scoreX={this.state.scoreX} scoreY={this.state.scoreY} />
           </div>
           <div id="Message">
-             <Message />
+             <Message  alertMessage={this.state.alertMessage} winnerFound={this.state.winnerFound} />
           </div>
         </div>
         <div className="" id="">
-          <GameBoard tiles={this.state.tiles}/>
+          <GameBoard tiles={this.state.tiles} winnerFound={this.state.winnerFound}/>
         </div>
       </div>
     );
