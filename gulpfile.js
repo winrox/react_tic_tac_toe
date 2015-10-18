@@ -33,9 +33,9 @@ var notify = function(error) {
 };
 
 var bundler = watchify(browserify({
-  entries: ['./src/app.jsx', "../css/"],
+  entries: ['./src/app.jsx'],
   transform: [reactify],
-  extensions: ['.jsx', '.css'],
+  extensions: ['.jsx'],
   debug: true,
   cache: {},
   packageCache: {},
@@ -72,6 +72,12 @@ gulp.task('serve', function(done) {
     }));
 });
 
+gulp.task('css', function () {
+  gulp.src('./css/**/*.css')
+    .pipe(concat('style.css'))
+    .pipe(gulp.dest('./'));
+});
+
 gulp.task('sass', function () {
   gulp.src('./sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
@@ -79,8 +85,8 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['build', 'serve', 'sass', 'watch']);
+gulp.task('default', ['build', 'serve', 'sass', 'watch', 'css']);
 
 gulp.task('watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
+  gulp.watch('./css/**/*.css', ['css']);
 });
