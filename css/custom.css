@@ -95,3 +95,7 @@ table td {
     width: 15%;
     height: auto;
   }
+
+  #game-header {
+    color: red;
+  }
