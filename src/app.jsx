@@ -4,11 +4,8 @@ var FireBase = require('firebase');
 var Message = require('./message');
 var ScoreBoard = require('./scoreboard');
 var GameBoard = require('./game_board');
+var Tile = require('./tile');
 var rootUrl = 'https://react-tic-tac-toe.firebaseio.com//';
-
-
-
-
 
 var App = React.createClass({
   mixins: [ ReactFire ], // this allows you to use any methods from ReacFire (bindAsObject here)
@@ -17,17 +14,23 @@ var App = React.createClass({
     return {
       winnerFound: false,
       loaded: false,
-      tiles: {},
+      items: {},
       scoreX: 0,
       scoreY: 0
     }
   },
 
-  componentWillMount: function(){
-    this.fireBase = new FireBase(rootUrl + 'game-play/'); //new instance of firebase
-    this.bindAsObject(this.fireBase, 'game-play'); //get/set info in db tiles
-    this.fireBase.on('value', this.handleDataLoaded); //lets us listen to firebase value event
-  },
+  // componentWillMount: function(){
+  //   this.fireBase = new FireBase(rootUrl + 'items/'); //new instance of firebase
+  //   this.bindAsObject(this.fireBase, 'items'); //get/set info in db items
+  //   this.fireBase.on('value', this.handleDataLoaded); //lets us listen to firebase value event
+  //   // this.fireBase.on("child_added", function(items) {
+  //   //   this.items.push(items.val());
+  //   //   this.setState({
+  //   //     items: this.items
+  //   //   });
+  //   // }
+  // },
 
   render: function() {
 
@@ -45,6 +48,9 @@ var App = React.createClass({
              <Message />
           </div>
         </div>
+        <div className="" id="">
+          <GameBoard />
+        </div>
       </div>
     );
   },
@@ -53,6 +59,25 @@ var App = React.createClass({
     this.setState({loaded: true});
   }
 });
+
+
+var element = React.createElement(App, {});
+React.render(element, document.querySelector('.container'));
+
+
+
+// this.fireBase.items = items.child("items");
+// this.fireBase.items.set([
+//   {id: "a1", src: "img/blank.png"},
+//   {id: "a2", src: "img/blank.png"},
+//   {id: "a3", src: "img/blank.png"},
+//   {id: "b1", src: "img/blank.png"},
+//   {id: "b2", src: "img/blank.png"},
+//   {id: "b3", src: "img/blank.png"},
+//   {id: "c1", src: "img/blank.png"},
+//   {id: "c2", src: "img/blank.png"},
+//   {id: "c3", src: "img/blank.png"}
+// ]);
 
 // this.props.tiles.push([
 //   {id: "a1", src: "img/blank.png"},
@@ -63,16 +88,9 @@ var App = React.createClass({
 //   {id: "b3", src: "img/blank.png"},
 //   {id: "c1", src: "img/blank.png"},
 //   {id: "c2", src: "img/blank.png"},
-//   {id: "c3", src: "img/blank.png"},
+//   {id: "c3", src: "img/blank.png"}
 // ]);
 
-var element = React.createElement(App, {});
-React.render(element, document.querySelector('.container'));
-
-
-
-
-        //
         // <div className="table" id="game-table">
         //   <GameBoard />
         // </div>

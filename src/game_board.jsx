@@ -5,50 +5,59 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div>
-        {this.renderGrid(this.renderTiles())}
+         <h1>GAMEBOARD</h1>
       </div>
     )
   },
 
-  rendertTiles: function() {
-    if(!this.props.tiles.game-play) {
-      return
-    } else {
-      var tiles = [];
+  // rendertTiles: function() {
+  //   if(!this.props.tiles) {
+  //     return
+  //   } else {
+  //     var tiles = [];
+  //
+  //     for(var key in this.props.tiles) {
+  //       var tiles = this.props.tiles[key];
+  //       tile.key = key;
+  //
+  //       tiles.push(
+  //         <Tile
+  //           tile = {this.props.tiles[key]}
+  //           key = {key}
+  //           >
+  //         </Tile>
+  //       )
+  //     }
+  //     return tiles;
+  //   }
+  // },
 
-      for(var key in this.props.tiles) {
-        var tilesCollection = this.props.tiles[key];
-        tile.key = key;
+// {this.renderGrid(this.renderTiles())}
 
-        tilesCollection.push(
-          <Tile
-            tile = {this.props.tiles[key]}
-            key = {key}
-            >
-          </Tile>
-        )
-      }
-      return tilesCollection;
-    }
-  },
 /* May need to use the proper keys from firebase to identify each tile */
-  renderGrid: function() {
-    return <table>
-      <tr>
-        {tilesCollection[0]}
-        {tilesCollection[1]}
-        {tilesCollection[2]}
-      </tr>
-      <tr>
-        {tilesCollection[3]}
-        {tilesCollection[4]}
-        {tilesCollection[5]}
-      </tr>
-      <tr>
-        {tilesCollection[6]}
-        {tilesCollection[7]}
-        {tilesCollection[8]}
-      </tr>
-    </table>
-  }
+  // renderGrid: function() {
+  //   return <table>
+  //     <tr>
+  //       {tiles[0]}
+  //       {tiles[1]}
+  //       {tiles[2]}
+  //     </tr>
+  //     <tr>
+  //       {tiles[3]}
+  //       {tiles[4]}
+  //       {tiles[5]}
+  //     </tr>
+  //     <tr>
+  //       {tiles[6]}
+  //       {tiles[7]}
+  //       {tiles[8]}
+  //     </tr>
+  //   </table>
+  // }
 });
+
+//
+//
+// this.props.itemsStore.push({
+//   testHere: true
+// });
