@@ -23,6 +23,11 @@ var App = React.createClass({
     }
   },
 
+  componentWillMount: function(){
+    this.fireBase = new FireBase(rootUrl + 'game-play/'); //new instance of firebase
+    this.bindAsObject(this.fireBase, 'game-play'); //get/set info in db tiles
+    this.fireBase.on('value', this.handleDataLoaded); //lets us listen to firebase value event
+  },
 
   render: function() {
 
@@ -43,9 +48,13 @@ var App = React.createClass({
       </div>
     );
   },
+
+  handleDataLoaded: function() {
+    this.setState({loaded: true});
+  }
 });
 
-// this.props.tiles = {[
+// this.props.tiles.push([
 //   {id: "a1", src: "img/blank.png"},
 //   {id: "a2", src: "img/blank.png"},
 //   {id: "a3", src: "img/blank.png"},
@@ -55,7 +64,7 @@ var App = React.createClass({
 //   {id: "c1", src: "img/blank.png"},
 //   {id: "c2", src: "img/blank.png"},
 //   {id: "c3", src: "img/blank.png"},
-// ]};
+// ]);
 
 var element = React.createElement(App, {});
 React.render(element, document.querySelector('.container'));
@@ -67,16 +76,3 @@ React.render(element, document.querySelector('.container'));
         // <div className="table" id="game-table">
         //   <GameBoard />
         // </div>
-
-
-// componentWillMount: function(){
-//   this.fireBase = new FireBase(rootUrl + 'game-play/'); //new instance of firebase
-//   this.bindAsObject(this.fireBase, 'game-play'); //get/set info in db tiles
-//   this.fireBase.on('value', this.handleDataLoaded); //lets us listen to firebase value event
-// },
-
-
-
-// handleDataLoaded: function() {
-//   this.setState({loaded: true});
-// }
