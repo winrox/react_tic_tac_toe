@@ -1,10 +1,13 @@
 var React = require('react');
 var ReactFire = require('reactfire');
 var FireBase = require('firebase');
-var Message = require('message');
+var Message = require('./message');
 var ScoreBoard = require('./scoreboard');
 var GameBoard = require('./game_board');
 var rootUrl = 'https://react-tic-tac-toe.firebaseio.com//';
+
+
+
 
 
 var App = React.createClass({
@@ -14,43 +17,69 @@ var App = React.createClass({
     return {
       winnerFound: false,
       loaded: false,
-      tiles: {}
+      tiles: {},
+      scoreX: 0,
+      scoreY: 0
     }
   },
 
-  componentWillMount: function(){
-    this.firebase = new FireBase(rootUrl + 'game-play/'); //new instance of firebase
-    this.bindAsObject(this.firebase, 'game-play'); //get/set info in db tiles
-  },
 
   render: function() {
 
-    return <div className="col-md-8">
-      <h1 className="text-center">
-        <img src="https://www.codementor.io/assets/tutorial_icon/reactjs.png" />
-        Tic Tac Toe
-      </h1>
+    return(
+      <div className="col-md-8">
+        <h1 className="text-center">
+          <img src="https://www.codementor.io/assets/tutorial_icon/reactjs.png" />
+          Tic Tac Toe
+        </h1>
+        <div id="game-header">
 
-      <div id="game-header">
-        <div className="table" id="scoreboard">
-          <ScoreBoard />
-        </div>
-        <div id="Message">
-          <Message />
+          <div id="Message">
+             <Message />
+          </div>
         </div>
       </div>
-
-      <div className="table" id="game-table">
-        <GameBoard />
-      </div>
-    </div>
+    );
   },
 
-  handleDataLoaded: function() {
-    this.setState({loaded: true});
-  }
+
 
 });
 
+// this.props.tiles = {[
+//   {id: "a1", src: "img/blank.png"},
+//   {id: "a2", src: "img/blank.png"},
+//   {id: "a3", src: "img/blank.png"},
+//   {id: "b1", src: "img/blank.png"},
+//   {id: "b2", src: "img/blank.png"},
+//   {id: "b3", src: "img/blank.png"},
+//   {id: "c1", src: "img/blank.png"},
+//   {id: "c2", src: "img/blank.png"},
+//   {id: "c3", src: "img/blank.png"},
+// ]};
+
 var element = React.createElement(App, {});
 React.render(element, document.querySelector('.container'));
+
+
+// <div className="table" id="scoreboard">
+//   <ScoreBoard />
+// </div>
+
+        //
+        // <div className="table" id="game-table">
+        //   <GameBoard />
+        // </div>
+
+
+// componentWillMount: function(){
+//   this.fireBase = new FireBase(rootUrl + 'game-play/'); //new instance of firebase
+//   this.bindAsObject(this.fireBase, 'game-play'); //get/set info in db tiles
+//   this.fireBase.on('value', this.handleDataLoaded); //lets us listen to firebase value event
+// },
+
+
+
+// handleDataLoaded: function() {
+//   this.setState({loaded: true});
+// }

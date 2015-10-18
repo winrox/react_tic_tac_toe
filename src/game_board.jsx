@@ -3,9 +3,11 @@ var Tile = require('./tile');
 
 module.exports = React.createClass({
   render: function() {
-    return <div>
-      {this.renderGrid(this.renderTiles())}
-    </div>
+    return (
+      <div>
+        {this.renderGrid(this.renderTiles())}
+      </div>
+    )
   },
 
   rendertTiles: function() {
@@ -30,7 +32,7 @@ module.exports = React.createClass({
     }
   },
 /* May need to use the proper keys from firebase to identify each tile */
-  renderGrid: function)() {
+  renderGrid: function() {
     return <table>
       <tr>
         {tilesCollection[0]}
