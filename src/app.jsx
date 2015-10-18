@@ -5,6 +5,7 @@ var Message = require('./message');
 var ScoreBoard = require('./scoreboard');
 var GameBoard = require('./game_board');
 var Tile = require('./tile');
+var PlayAgain = require('./play_again');
 var rootUrl = 'https://react-tic-tac-toe.firebaseio.com//';
 
 var App = React.createClass({
@@ -54,6 +55,9 @@ var App = React.createClass({
         <div id="game-header">
           <div className="table" id="scoreboard">
             <ScoreBoard  scoreX={this.state.scoreX} scoreY={this.state.scoreY} />
+          </div>
+          <div>
+            <PlayAgain />
           </div>
           <div id="Message">
              <Message  alertMessage={this.state.alertMessage} winnerFound={this.state.winnerFound} />

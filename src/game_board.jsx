@@ -11,17 +11,18 @@ module.exports = React.createClass({
   },
 
   getTileId: function(id) {
-    for(var key in this.props.tiles) {
-      var tile = this.props.tiles[key];
+    /* iterate through each tile in tiles */
+    for(var index in this.props.tiles) {
+      var tile = this.props.tiles[index];
 
       if(tile.id == id) {
+        /* if this is the tile we are looking for then return it */
         return tile;
       }
     }
   },
 
   renderGrid: function() {
-    var tyle = this.props.tiles
 
     return (
       <div>
