@@ -6,18 +6,19 @@
   3)display no winner message*/
 
 var React = require('react');
-var ReactFire = require('reactfire');
-var FireBase = require('firebase');
+var _ = require('underscore');
+// var ReactFire = require('reactfire');
+// var FireBase = require('firebase');
 var Message = require('./message');
 var ScoreBoard = require('./scoreboard');
 var GameBoard = require('./game_board');
 var PlayAgain = require('./play_again');
-var _ = require('underscore');
+
 
 // var rootUrl = 'https://react-tic-tac-toe.firebaseio.com//';
 
 var App = React.createClass({
-  mixins: [ ReactFire ], // this allows you to use any methods from ReacFire (bindAsObject here)
+  // mixins: [ ReactFire ], // this allows you to use any methods from ReacFire (bindAsObject here)
 
   getInitialState: function() {
     return {
@@ -106,11 +107,13 @@ var App = React.createClass({
        else if(even == true) {
         tile.src = "img/X.png"
         console.log(tile.id + " has gotten an X.");
+        this.setState({alertMessage: ""});
       }
 
       else if(even == false) {
         tile.src = "img/O.png"
         console.log(tile.id + " has gotten an O.");
+        this.setState({alertMessage: ""});
       }
 
 
