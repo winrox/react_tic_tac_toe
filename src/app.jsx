@@ -1,5 +1,4 @@
 /*TODO: stop tile from changing source once changed from blank only */
-/*TODO: sometimes not all tiles can be changed to x or o */
 /*TODO: render messages */
 
 var React = require('react');
