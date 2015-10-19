@@ -52,9 +52,9 @@ var App = React.createClass({
           <div>
             <PlayAgain  playAgainClickHandler={this.playAgainClickHandler}/>
           </div>
-          <div id="Message">
-             <Message  alertMessage={this.state.alertMessage} winnerFound={this.state.winnerFound} />
-          </div>
+        </div>
+        <div id="Message">
+           <Message  alertMessage={this.state.alertMessage} winnerFound={this.state.winnerFound} />
         </div>
         <div className="" id="">
           <GameBoard

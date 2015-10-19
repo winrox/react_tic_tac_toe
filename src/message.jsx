@@ -5,7 +5,7 @@ module.exports = React.createClass({
     return (
       <div className="center-text">
         <h4>
-          <alertMessage />
+          {this.props.alertMessage}
         </h4>
       </div>
     );
