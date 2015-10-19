@@ -1,3 +1,8 @@
+/*TODO: stop tile from changing source once changed from blank only */
+/*TODO: sometimes not all tiles can ce changed to x or o */
+/*TODO: render messages */
+/*TODO: message doesn't display when o wins */
+
 var React = require('react');
 var ReactFire = require('reactfire');
 var FireBase = require('firebase');
@@ -15,7 +20,7 @@ var App = React.createClass({
   getInitialState: function() {
     return {
       winnerFound: false,
-      loaded: false,
+      /* TODO: instead of src: --> value: 'x' || 'o' || ''  */
       tiles: [
         {id: "a1", src: "img/blank.png"},
         {id: "a2", src: "img/blank.png"},
@@ -30,7 +35,7 @@ var App = React.createClass({
       scoreX: 0,
       scoreY: 0,
       alertMessage: '',
-      clickCounter: 0
+      clickCounter: 0,
     }
   },
 
