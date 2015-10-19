@@ -33,51 +33,51 @@ module.exports = React.createClass({
             <td>
               <Tile
               tile={this.getTileById(tile[0].id)}
-              clickHandler={this.props.clickHandler.bind(null, tile[0].id)}/>
+              clickHandler={this.props.clickHandler.bind(null, tile[0])}/>
             </td>
             <td>
             <Tile
             tile={this.getTileById(tile[1].id)}
-            clickHandler={this.props.clickHandler.bind(null, tile[1].id)}/>
+            clickHandler={this.props.clickHandler.bind(null, tile[1])}/>
             </td>
             <td>
             <Tile
             tile={this.getTileById(tile[2].id)}
-            clickHandler={this.props.clickHandler.bind(null, tile[2].id)}/>
+            clickHandler={this.props.clickHandler.bind(null, tile[2])}/>
             </td>
           </tr>
           <tr>
             <td>
             <Tile
             tile={this.getTileById(tile[3].id)}
-            clickHandler={this.props.clickHandler.bind(null, tile[3].id)}/>
+            clickHandler={this.props.clickHandler.bind(null, tile[3])}/>
             </td>
             <td>
             <Tile
             tile={this.getTileById(tile[4].id)}
-            clickHandler={this.props.clickHandler.bind(null, tile[4].id)}/>
+            clickHandler={this.props.clickHandler.bind(null, tile[4])}/>
             </td>
             <td>
             <Tile
             tile={this.getTileById(tile[5].id)}
-            clickHandler={this.props.clickHandler.bind(null, tile[5].id)}/>
+            clickHandler={this.props.clickHandler.bind(null, tile[5])}/>
             </td>
           </tr>
           <tr>
             <td>
             <Tile
             tile={this.getTileById(tile[6].id)}
-            clickHandler={this.props.clickHandler.bind(null, tile[6].id)}/>
+            clickHandler={this.props.clickHandler.bind(null, tile[6])}/>
             </td>
             <td>
             <Tile
             tile={this.getTileById(tile[7].id)}
-            clickHandler={this.props.clickHandler.bind(null, tile[7].id)}/>
+            clickHandler={this.props.clickHandler.bind(null, tile[7])}/>
             </td>
             <td>
             <Tile
             tile={this.getTileById(tile[8].id)}
-            clickHandler={this.props.clickHandler.bind(null, tile[8].id)}/>
+            clickHandler={this.props.clickHandler.bind(null, tile[8])}/>
             </td>
           </tr>
         </table>

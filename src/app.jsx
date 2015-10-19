@@ -83,32 +83,49 @@ var App = React.createClass({
     } else if(num === 1) {
       return false;
     } else if(num < 0) {
-      return isEven(num + 2);
+      return this.isEven(num + 2);
     }
     else {
-      return isEven(num - 2);
+      return this.isEven(num - 2);
     }
   },
 
-  tileClickHandler: function(tileId, child) {
-    console.log('tile '+ tileId+ ' has been clicked');
-    this.setState((state, props) => ({clickCounter: state.clickCounter + 1}));
+  tileClickHandler: function(tile, child) {
 
-    // if(this.state.foundWinner == true) {
-    //   return;
-    // } else {
-    //   this.setState((state, props) => ({clickCounter: state.clickCounter + 1}));
-    //
-    //   var even = this.isEven(this.state.clickCounter);
-    //
-    //
-    // }
+    console.log('tile '+ tile.id + ' has been clicked');
 
-    // this.setState((state, props) => ({clickCounter: state.clickCounter + 1}));
+    if(this.state.foundWinner == true) {
+      return;
+    } else {
+      this.setState((state, props) => ({clickCounter: state.clickCounter + 1}));
+
+      var even = this.isEven(this.state.clickCounter);
+
+      if(even == true) {
+        tile.src = "img/X.png"
+        console.log(tile.id + " has gotten an X.");
+      }
+
+      else if(even == false) {
+        tile.src = "img/O.png"
+        console.log(tile.id + " has gotten an O.");
+      }
+
+      else if(tile.src != 'img/blank.html') {
+        console.log(tile.id + " is considered to already have an X or O in it.")
+        this.setState({alertMessage: "I'm sorry. That spot has already been taken."});
+        this.setState((state, props) => ({clickCounter: state.clickCounter - 1}));
+      }
+
+      else {
+        console.log("ERROR!");
+        this.setState((state, props) => ({clickCounter: state.clickCounter - 1}));
+      }
+      console.log(this.isEven(this.state.clickCounter) + " is the value of isEven()");
+    }
+
     // this.findWinner();
   },
-
-
 
   // findWinner: function (){
   //   var win = [['a1','a2','a3'],['b1','b2','b3'],['c1','c2','c3'],['a1','b1','c1'],['a2','b2','c2'],['a3','b3','c3'],['a1','b2','c3'],['a3','b2','c1']];
@@ -122,6 +139,7 @@ var App = React.createClass({
   //       && (this.props.tiles[i].id == winIndex[2] && this.props.tiles[i].src == "img/X.png")
   //     ) {
   //       this.setState({foundWinner: true});
+  //       this.setState({alertMessage: "X wins!"});
   //     }
   //
   //     else if (
@@ -130,6 +148,7 @@ var App = React.createClass({
   //       && (this.props.tiles[i].id == winIndex[2] && this.props.tiles[i].src == "img/Y.png")
   //     ) {
   //       this.setState({foundWinner: true});
+  //       this.setState({alertMessage: "O wins!"});
   //     }
   //
   //
@@ -163,42 +182,12 @@ var App = React.createClass({
   //   }
   // }
 
-  // handleDataLoaded: function() {
-  //   this.setState({loaded: true});
-  // }
-});
+
+//   handleDataLoaded: function() {
+//     this.setState({loaded: true});
+//   }
+// });
 
 
 var element = React.createElement(App, {});
 React.render(element, document.querySelector('.container'));
-
-
-
-// this.fireBase.items = items.child("items");
-// this.fireBase.items.set([
-//   {id: "a1", src: "img/blank.png"},
-//   {id: "a2", src: "img/blank.png"},
-//   {id: "a3", src: "img/blank.png"},
-//   {id: "b1", src: "img/blank.png"},
-//   {id: "b2", src: "img/blank.png"},
-//   {id: "b3", src: "img/blank.png"},
-//   {id: "c1", src: "img/blank.png"},
-//   {id: "c2", src: "img/blank.png"},
-//   {id: "c3", src: "img/blank.png"}
-// ]);
-
-// this.props.tiles.push([
-//   {id: "a1", src: "img/blank.png"},
-//   {id: "a2", src: "img/blank.png"},
-//   {id: "a3", src: "img/blank.png"},
-//   {id: "b1", src: "img/blank.png"},
-//   {id: "b2", src: "img/blank.png"},
-//   {id: "b3", src: "img/blank.png"},
-//   {id: "c1", src: "img/blank.png"},
-//   {id: "c2", src: "img/blank.png"},
-//   {id: "c3", src: "img/blank.png"}
-// ]);
-
-        // <div className="table" id="game-table">
-        //   <GameBoard />
-        // </div>
