@@ -1,7 +1,6 @@
 /*TODO: stop tile from changing source once changed from blank only */
 /*TODO: sometimes not all tiles can ce changed to x or o */
 /*TODO: render messages */
-/*TODO: message doesn't display when o wins */
 
 var React = require('react');
 var ReactFire = require('reactfire');
@@ -152,13 +151,13 @@ var App = React.createClass({
         //need to show play-again button
       }
 
-      else if (
-        (this.getTileById(winIndex[0]).src == "img/Y.png")
-        && (this.getTileById(winIndex[1]).src == "img/Y.png")
-        && (this.getTileById(winIndex[2]).src == "img/Y.png")
+      if (
+        (this.getTileById(winIndex[0]).src == "img/O.png")
+        && (this.getTileById(winIndex[1]).src == "img/O.png")
+        && (this.getTileById(winIndex[2]).src == "img/O.png")
       ) {
         this.setState({foundWinner: true});
-        this.setState((state, props) => ({scoreY: state.scoreY + 1}));
+        this.setState((state, props) => ({scoreO: state.scoreO + 1}));
         this.setState({alertMessage: "O wins!"});
         //need to show play-again button
       }
