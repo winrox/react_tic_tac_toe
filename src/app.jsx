@@ -1,5 +1,9 @@
-/*TODO: stop tile from changing source once changed from blank only */
-/*TODO: render messages */
+
+/*TODO: render messages :
+  1) display X/O wins message
+  2) display error for clicking on already picked tile
+    2.5)fadeOut or hide
+  3)display no winner message*/
 
 var React = require('react');
 var ReactFire = require('reactfire');
@@ -31,7 +35,7 @@ var App = React.createClass({
         {id: "c3", src: "img/blank.png"}
       ],
       scoreX: 0,
-      scoreY: 0,
+      scoreO: 0,
       alertMessage: '',
       clickCounter: 0,
     }
@@ -47,7 +51,7 @@ var App = React.createClass({
         </h1>
         <div id="game-header">
           <div className="table" id="scoreboard">
-            <ScoreBoard  scoreX={this.state.scoreX} scoreY={this.state.scoreY} />
+            <ScoreBoard  scoreX={this.state.scoreX} scoreO={this.state.scoreO} />
           </div>
           <div>
             <PlayAgain  playAgainClickHandler={this.playAgainClickHandler}/>
@@ -86,7 +90,7 @@ var App = React.createClass({
 
     console.log('tile '+ tile.id + ' has been clicked and tile.src= ' + tile.src);
 
-    if(this.state.foundWinner == true) {
+    if(this.state.winnerFound == true) {
       return;
     } else {
       this.setState((state, props) => ({clickCounter: state.clickCounter + 1}));
@@ -146,7 +150,7 @@ var App = React.createClass({
         && (this.getTileById(winIndex[1]).src == "img/X.png")
         && (this.getTileById(winIndex[2]).src == "img/X.png")
       ) {
-        this.setState({foundWinner: true});
+        this.setState({winnerFound: true});
         this.setState((state, props) => ({scoreX: state.scoreX + 1}));
         this.setState({alertMessage: "X wins!"});
         //need to show play-again button
@@ -157,16 +161,17 @@ var App = React.createClass({
         && (this.getTileById(winIndex[1]).src == "img/O.png")
         && (this.getTileById(winIndex[2]).src == "img/O.png")
       ) {
-        this.setState({foundWinner: true});
+        this.setState({winnerFound: true});
         this.setState((state, props) => ({scoreO: state.scoreO + 1}));
         this.setState({alertMessage: "O wins!"});
         //need to show play-again button
       }
-
-      else if(this.state.clickCounter == 9 && foundWinner == false && i == 7) {
-        this.setState({alertMessage: "No winner this time. Please play again"});
-        //need to show play-again button
-      }
+    }
+    console.log(this.state.winnerFound);
+    if(this.state.clickCounter == 9 && this.state.winnerFound == false) {
+      console.log('AKJHSFJKHKSAHKLA');
+      this.setState({alertMessage: "No winner this time. Please play again."});
+      //need to show play-again button
     }
   },
 
@@ -174,7 +179,7 @@ var App = React.createClass({
     console.log('play again button click heard');
     this.clearGame();
     this.setState({alertMessage: ""});
-    this.setState({foundWinner: false});
+    this.setState({winnerFound: false});
     this.setState({clickCounter: 0});
     //hide play again button
   },

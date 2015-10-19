@@ -99,3 +99,7 @@ table td {
   #game-header {
     color: red;
   }
+
+  .alert-message {
+    padding-right: 5%;
+  }

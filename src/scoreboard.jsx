@@ -16,7 +16,7 @@ module.exports = React.createClass({
         </tr>
         <tr>
           <td><p id="x-score">{this.props.scoreX}</p></td>
-          <td><p id="o-score">{this.props.scoreY}</p></td>
+          <td><p id="o-score">{this.props.scoreO}</p></td>
         </tr>
       </table>
     )
