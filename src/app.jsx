@@ -1,10 +1,3 @@
-
-/*TODO: render messages :
-  1) display X/O wins message
-  2) display error for clicking on already picked tile
-    2.5)fadeOut or hide
-  3)display no winner message*/
-
 var React = require('react');
 var _ = require('underscore');
 // var ReactFire = require('reactfire');
@@ -88,13 +81,11 @@ var App = React.createClass({
   },
 
   tileClickHandler: function(tile, child) {
-
-    console.log('tile '+ tile.id + ' has been clicked and tile.src= ' + tile.src);
+    this.setState((state, props) => ({clickCounter: state.clickCounter + 1}));
 
     if(this.state.winnerFound == true) {
       return;
     } else {
-      this.setState((state, props) => ({clickCounter: state.clickCounter + 1}));
 
       var even = this.isEven(this.state.clickCounter);
 
@@ -115,8 +106,6 @@ var App = React.createClass({
         console.log(tile.id + " has gotten an O.");
         this.setState({alertMessage: ""});
       }
-
-
 
       else {
         console.log("ERROR!");
@@ -170,9 +159,12 @@ var App = React.createClass({
         //need to show play-again button
       }
     }
-    console.log(this.state.winnerFound);
-    if(this.state.clickCounter == 9 && this.state.winnerFound == false) {
-      console.log('AKJHSFJKHKSAHKLA');
+    console.log('this.state.winnerFound = '+this.state.winnerFound);
+    console.log('this.state.clickCounter = '+ this.state.clickCounter);
+    if(this.state.clickCounter == 8 && this.state.winnerFound == false) {
+      /* The click counter must update it's state asynchronously, because
+      my console.log click counter is always one behind the state, therefore
+      to get the no winner found message I had to change the value from 9 to 8. */
       this.setState({alertMessage: "No winner this time. Please play again."});
       //need to show play-again button
     }
