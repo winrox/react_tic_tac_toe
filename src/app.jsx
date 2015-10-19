@@ -5,6 +5,7 @@ var Message = require('./message');
 var ScoreBoard = require('./scoreboard');
 var GameBoard = require('./game_board');
 var PlayAgain = require('./play_again');
+var _ = require('underscore');
 
 // var rootUrl = 'https://react-tic-tac-toe.firebaseio.com//';
 
@@ -46,7 +47,7 @@ var App = React.createClass({
             <ScoreBoard  scoreX={this.state.scoreX} scoreY={this.state.scoreY} />
           </div>
           <div>
-            <PlayAgain />
+            <PlayAgain  playAgainClickHandler={this.playAgainClickHandler}/>
           </div>
           <div id="Message">
              <Message  alertMessage={this.state.alertMessage} winnerFound={this.state.winnerFound} />
@@ -81,7 +82,7 @@ var App = React.createClass({
   tileClickHandler: function(tile, child) {
 
     console.log('tile '+ tile.id + ' has been clicked');
-    
+
     if(this.state.foundWinner == true) {
       return;
     } else {
@@ -165,18 +166,23 @@ var App = React.createClass({
   },
 
   playAgainClickHandler: function() {
-    // this.state.clearGame();
+    console.log('play again button click heard');
+    this.clearGame();
     this.setState({alertMessage: ""});
     this.setState({foundWinner: false});
     this.setState({clickCounter: 0});
     //hide play again button
-  }
+  },
 
-  // clearGame: function() {
-  //   newTiles = deepCopy(this.state.tiles);
-  //   console.log('newTiles = '+ newTiles);
-  //
-  // }
+  clearGame: function() {
+    var newTiles = _.extend({}, this.state.tiles);
+    /* iterate through each tile in tiles */
+    for(var index in newTiles) {
+      var tile = newTiles[index];
+      tile.src = "img/blank.png"
+    }
+    this.setState({tiles: newTiles});
+  }
 
 });
 

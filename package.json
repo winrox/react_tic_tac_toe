@@ -22,6 +22,7 @@
     "react-deep-link-state": "0.0.2",
     "reactfire": "^0.4.0",
     "reactify": "^1.1.0",
+    "underscore": "^1.8.3",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.4.0"
   },
