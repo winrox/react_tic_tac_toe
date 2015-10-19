@@ -33,18 +33,6 @@ var App = React.createClass({
     }
   },
 
-  // componentWillMount: function(){
-  //   this.fireBase = new FireBase(rootUrl + 'items/'); //new instance of firebase
-  //   this.bindAsArray(this.fireBase, 'items'); //get/set info in db items
-  //   this.fireBase.on('value', this.handleDataLoaded); //lets us listen to firebase value event
-  //   // this.fireBase.on("child_added", function(items) {
-  //   //   this.items.push(items.val());
-  //   //   this.setState({
-  //   //     items: this.items
-  //   //   });
-  //   // }
-  // },
-
   render: function() {
 
     return(
@@ -93,7 +81,7 @@ var App = React.createClass({
   tileClickHandler: function(tile, child) {
 
     console.log('tile '+ tile.id + ' has been clicked');
-
+    
     if(this.state.foundWinner == true) {
       return;
     } else {
@@ -124,70 +112,73 @@ var App = React.createClass({
       console.log(this.isEven(this.state.clickCounter) + " is the value of isEven()");
     }
 
-    // this.findWinner();
+    this.findWinner();
   },
 
-  // findWinner: function (){
-  //   var win = [['a1','a2','a3'],['b1','b2','b3'],['c1','c2','c3'],['a1','b1','c1'],['a2','b2','c2'],['a3','b3','c3'],['a1','b2','c3'],['a3','b2','c1']];
+  getTileById: function(id) {
+    /* iterate through each tile in tiles */
+    for(var index in this.state.tiles) {
+      var tile = this.state.tiles[index];
+
+      if(tile.id == id) {
+        /* if this is the tile we are looking for then return it */
+        return tile;
+      }
+    }
+  },
+
+  findWinner: function (){
+    var tiles = this.state.tiles;
+
+    var win = [['a1','a2','a3'],['b1','b2','b3'],['c1','c2','c3'],['a1','b1','c1'],['a2','b2','c2'],['a3','b3','c3'],['a1','b2','c3'],['a3','b2','c1']];
+
+    for(var i in win) {
+      var winIndex = win[i];
+
+      if (
+        (this.getTileById(winIndex[0]).src == "img/X.png")
+        && (this.getTileById(winIndex[1]).src == "img/X.png")
+        && (this.getTileById(winIndex[2]).src == "img/X.png")
+      ) {
+        this.setState({foundWinner: true});
+        this.setState((state, props) => ({scoreX: state.scoreX + 1}));
+        this.setState({alertMessage: "X wins!"});
+        //need to show play-again button
+      }
+
+      else if (
+        (this.getTileById(winIndex[0]).src == "img/Y.png")
+        && (this.getTileById(winIndex[1]).src == "img/Y.png")
+        && (this.getTileById(winIndex[2]).src == "img/Y.png")
+      ) {
+        this.setState({foundWinner: true});
+        this.setState((state, props) => ({scoreY: state.scoreY + 1}));
+        this.setState({alertMessage: "O wins!"});
+        //need to show play-again button
+      }
+
+      else if(this.state.clickCounter == 9 && foundWinner == false && i == 7) {
+        this.setState({alertMessage: "No winner this time. Please play again"});
+        //need to show play-again button
+      }
+    }
+  },
+
+  playAgainClickHandler: function() {
+    // this.state.clearGame();
+    this.setState({alertMessage: ""});
+    this.setState({foundWinner: false});
+    this.setState({clickCounter: 0});
+    //hide play again button
+  }
+
+  // clearGame: function() {
+  //   newTiles = deepCopy(this.state.tiles);
+  //   console.log('newTiles = '+ newTiles);
   //
-  //   for(var i in win) {
-  //     var winIndex = win[i];
-  //
-  //     if (
-  //       (this.props.tiles[i].id == winIndex[0] && this.props.tiles[i].src == "img/X.png")
-  //       && (this.props.tiles[i].id == winIndex[1] && this.props.tiles[i].src == "img/X.png")
-  //       && (this.props.tiles[i].id == winIndex[2] && this.props.tiles[i].src == "img/X.png")
-  //     ) {
-  //       this.setState({foundWinner: true});
-  //       this.setState({alertMessage: "X wins!"});
-  //     }
-  //
-  //     else if (
-  //       (this.props.tiles[i].id == winIndex[0] && this.props.tiles[i].src == "img/Y.png")
-  //       && (this.props.tiles[i].id == winIndex[1] && this.props.tiles[i].src == "img/Y.png")
-  //       && (this.props.tiles[i].id == winIndex[2] && this.props.tiles[i].src == "img/Y.png")
-  //     ) {
-  //       this.setState({foundWinner: true});
-  //       this.setState({alertMessage: "O wins!"});
-  //     }
-  //
-  //
-  //
-  //
-  //   if($('#'+(indexOfWin[0])).attr("src") == "img/X.png" &&
-  //      $('#'+(indexOfWin[1])).attr("src") == "img/X.png" &&
-  //      $('#'+(indexOfWin[2])).attr("src") == "img/X.png"){
-  //
-  //       winnerFound = true;
-  //       $('#win-message h1').html("X wins!!!").show();
-  //       scoreX++;
-  //       $('#x-score').html(scoreX);
-  //       $('#play-again').html('<button id="replay" onclick="buttonPress();">Play Again</button>').show();
-  //     }
-  //
-  //     else if($('#'+(indexOfWin[0])).attr("src") == "img/O.png" &&
-  //             $('#'+(indexOfWin[1])).attr("src") == "img/O.png" &&
-  //             $('#'+(indexOfWin[2])).attr("src") == "img/O.png"){
-  //       winnerFound = true;
-  //       $('#win-message h1').html("O wins!!!").show();
-  //       scoreO++;
-  //       $('#o-score').html(scoreO);
-  //       $('#play-again').html('<button id="replay" onclick="buttonPress();">Play Again</button>').show();
-  //     }
-  //
-  //     else if(clickCounter == 9 && winnerFound == false && i == 7){
-  //       $('#win-message h1').html("<p>No winner this time!<br>Please play again.</p>").show();
-  //       $('#play-again').html('<button id="replay" onclick="buttonPress();">Play Again</button>').show();
-  //     }
-  //   }
   // }
 
-
-//   handleDataLoaded: function() {
-//     this.setState({loaded: true});
-//   }
-// });
-
+});
 
 var element = React.createElement(App, {});
 React.render(element, document.querySelector('.container'));
