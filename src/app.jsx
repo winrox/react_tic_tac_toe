@@ -1,5 +1,5 @@
 /*TODO: stop tile from changing source once changed from blank only */
-/*TODO: sometimes not all tiles can ce changed to x or o */
+/*TODO: sometimes not all tiles can be changed to x or o */
 /*TODO: render messages */
 
 var React = require('react');
@@ -85,7 +85,7 @@ var App = React.createClass({
 
   tileClickHandler: function(tile, child) {
 
-    console.log('tile '+ tile.id + ' has been clicked');
+    console.log('tile '+ tile.id + ' has been clicked and tile.src= ' + tile.src);
 
     if(this.state.foundWinner == true) {
       return;
@@ -94,7 +94,13 @@ var App = React.createClass({
 
       var even = this.isEven(this.state.clickCounter);
 
-      if(even == true) {
+      if(tile.src !== 'img/blank.png') {
+        console.log(tile.id + " is considered to already have an X or O in it.")
+        this.setState({alertMessage: "I'm sorry. That spot has already been taken."});
+        this.setState((state, props) => ({clickCounter: state.clickCounter - 1}));
+      }
+
+       else if(even == true) {
         tile.src = "img/X.png"
         console.log(tile.id + " has gotten an X.");
       }
@@ -104,11 +110,7 @@ var App = React.createClass({
         console.log(tile.id + " has gotten an O.");
       }
 
-      else if(tile.src != 'img/blank.html') {
-        console.log(tile.id + " is considered to already have an X or O in it.")
-        this.setState({alertMessage: "I'm sorry. That spot has already been taken."});
-        this.setState((state, props) => ({clickCounter: state.clickCounter - 1}));
-      }
+
 
       else {
         console.log("ERROR!");
