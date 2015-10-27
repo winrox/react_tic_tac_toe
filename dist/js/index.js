@@ -19822,23 +19822,47 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _GameboardJsx = require('./Gameboard.jsx');
+
+var _GameboardJsx2 = _interopRequireDefault(_GameboardJsx);
+
 exports['default'] = _react2['default'].createClass({
   displayName: 'AppContainer',
 
   render: function render() {
-
-    return _react2['default'].createElement(
-      'div',
-      null,
-      'Hello'
-    );
+    return _react2['default'].createElement(_GameboardJsx2['default'], null);
   }
-
 });
 module.exports = exports['default'];
 
 
-},{"react":156}],158:[function(require,module,exports){
+},{"./Gameboard.jsx":158,"react":156}],158:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+// import Tile from './tile';
+
+var Gameboard = _react2['default'].createClass({
+  displayName: 'Gameboard',
+
+  render: function render() {
+    return _react2['default'].createElement(
+      'p',
+      null,
+      'SOMETHING'
+    );
+  }
+});
+
+module.exports = Gameboard;
+
+
+},{"react":156}],159:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -19854,4 +19878,4 @@ var _componentsAppContainerJsx2 = _interopRequireDefault(_componentsAppContainer
 _react2['default'].render(_react2['default'].createElement(_componentsAppContainerJsx2['default'], null), document.getElementById('main'));
 
 
-},{"./components/AppContainer.jsx":157,"react":156}]},{},[158]);
+},{"./components/AppContainer.jsx":157,"react":156}]},{},[159]);
