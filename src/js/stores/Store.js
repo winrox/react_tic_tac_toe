@@ -127,6 +127,22 @@ function determineXorO(tile, child){
     findWinner();
 }
 
+function clearGame() {
+  /* iterate through each tile in tiles */
+  for(var index in _tiles) {
+    var tile = _tiles[index];
+    tile.value = "";
+  }
+}
+
+function playAgain() {
+    console.log('play again button click heard');
+    clearGame();
+    _alertMessage = "";
+    _winnerFound = false;
+    _clickCounter = 0;
+  }
+
 var Store = assign({}, EventEmitter.prototype, {
   //get all tiles
   getAllTiles: function () {
@@ -174,6 +190,10 @@ var Store = assign({}, EventEmitter.prototype, {
         Store.emitChange(); // tell the view the store has changed
         break;
 
+        case Constants.PLAY_AGAIN:
+          playAgain();
+          Store.emitChange();
+          break;
       // add more cases for other action types
       return true; //No errors. Needed by promise in dispatcher.
       }

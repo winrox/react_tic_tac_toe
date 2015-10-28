@@ -7,7 +7,13 @@ var Actions = {
       actionType: Constants.CHANGE_TILE,
       item: tile
       })
-    }
+  },
+
+  playAgainClick: function() {
+      Dispatcher.handleViewAction({
+        actionType: Constants.PLAY_AGAIN
+      })
+  }
 }
 
 

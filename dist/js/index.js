@@ -20455,7 +20455,8 @@ module.exports = require('./lib/React');
 'use strict';
 
 module.exports = {
-  CHANGE_TILE: 'CHANGE_TILE'
+  CHANGE_TILE: 'CHANGE_TILE',
+  PLAY_AGAIN: 'PLAY_AGAIN'
 };
 
 
@@ -20504,6 +20505,12 @@ var Actions = {
     _DispatcherJs2['default'].handleViewAction({
       actionType: _ConstantsJs2['default'].CHANGE_TILE,
       item: tile
+    });
+  },
+
+  playAgainClick: function playAgainClick() {
+    _DispatcherJs2['default'].handleViewAction({
+      actionType: _ConstantsJs2['default'].PLAY_AGAIN
     });
   }
 };
@@ -20709,6 +20716,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _actionsActions = require('../actions/Actions');
+
+var _actionsActions2 = _interopRequireDefault(_actionsActions);
+
 var _HeaderJsx = require('./Header.jsx');
 
 var _HeaderJsx2 = _interopRequireDefault(_HeaderJsx);
@@ -20719,16 +20730,20 @@ var PlayAgain = _react2['default'].createClass({
   render: function render() {
     return _react2['default'].createElement(
       'button',
-      null,
+      { onClick: this.handleClick },
       'Play Again'
     );
+  },
+
+  handleClick: function handleClick() {
+    _actionsActions2['default'].playAgainClick();
   }
 });
 
 module.exports = PlayAgain;
 
 
-},{"./Header.jsx":167,"react":161}],170:[function(require,module,exports){
+},{"../actions/Actions":164,"./Header.jsx":167,"react":161}],170:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -20993,6 +21008,22 @@ function determineXorO(tile, child) {
   findWinner();
 }
 
+function clearGame() {
+  /* iterate through each tile in tiles */
+  for (var index in _tiles) {
+    var tile = _tiles[index];
+    tile.value = "";
+  }
+}
+
+function playAgain() {
+  console.log('play again button click heard');
+  clearGame();
+  _alertMessage = "";
+  _winnerFound = false;
+  _clickCounter = 0;
+}
+
 var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
   //get all tiles
   getAllTiles: function getAllTiles() {
@@ -21040,6 +21071,10 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
         Store.emitChange(); // tell the view the store has changed
         break;
 
+      case _Constants2['default'].PLAY_AGAIN:
+        playAgain();
+        Store.emitChange();
+        break;
         // add more cases for other action types
         return true; //No errors. Needed by promise in dispatcher.
     }
