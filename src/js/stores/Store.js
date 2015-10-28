@@ -64,7 +64,7 @@ function isEven(num) {
         && (getTileById(winIndex[2]).value == "x")
       ) {
         _winnerFound = true;
-        _score.scoreX = scoreX + 1;
+        _score.scoreX+=1;
         _alertMessage = "X wins!";
       }
 
@@ -74,13 +74,13 @@ function isEven(num) {
         && (getTileById(winIndex[2]).value == "o")
       ) {
         _winnerFound = true;
-        _score.scoreO = scoreO + 1;
+        _score.scoreO+=1;
         _alertMessage = "O wins!";
       }
     }
     console.log('_winnerFound = '+ _winnerFound);
     console.log('_clickCounter = '+ _clickCounter);
-    if(_clickCounter == 8 && _winnerFound == false) {
+    if(_clickCounter == 9 && _winnerFound == false) {
       /* The click counter must update it's state asynchronously, because
       my console.log click counter is always one behind the state, therefore
       to get the no winner found message I had to change the value from 9 to 8. */
@@ -105,14 +105,14 @@ function determineXorO(tile, child){
       }
 
        else if(even) {
-        tile.value = "x"
-        console.log(tile.id + " has gotten an X.");
+        tile.value = "o"
+        console.log(tile.id + " has gotten an O.");
         _alertMessage = "";
       }
 
       else if(even == false) {
-        tile.value = "o"
-        console.log(tile.id + " has gotten an O.");
+        tile.value = "x"
+        console.log(tile.id + " has gotten an X.");
         _alertMessage = "";
       }
 
@@ -134,6 +134,10 @@ var Store = assign({}, EventEmitter.prototype, {
   //get scoreX & scoreO
   getScore: function() {
     return _score;
+  },
+
+  foundWinnerStatus: function() {
+    return _winnerFound;
   },
 
   //get value of _clickCounter

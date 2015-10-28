@@ -6,7 +6,8 @@ export default React.createClass({
   getInitialState: function () {
     return {
       tiles: Store.getAllTiles(),
-      clickCounter: Store.getClickValue()
+      clickCounter: Store.getClickValue(),
+      foundWinner: Store.foundWinnerStatus()
     }
   },
 
@@ -16,7 +17,9 @@ export default React.createClass({
 
   onChange: function() {
     this.setState({
-      todos: Store.getAllTiles()
+      tiles: Store.getAllTiles(),
+      clickCounter: Store.getClickValue(),
+      foundWinner: Store.foundWinnerStatus()
     });
   },
 
