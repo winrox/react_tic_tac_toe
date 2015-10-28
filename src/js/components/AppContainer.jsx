@@ -5,7 +5,7 @@ import BaseStore from '../stores/BaseStore.js';
 export default React.createClass({
   getInitialState: function () {
     return {
-      tiles:[]
+      tiles: BaseStore.getAllTiles()
     }
   },
 
@@ -21,7 +21,7 @@ export default React.createClass({
 
   render() {
     return (
-         <Gameboard />
+         <Gameboard tiles={this.state.tiles}/>
     );
   }
 });

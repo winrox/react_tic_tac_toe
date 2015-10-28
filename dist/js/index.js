@@ -20538,7 +20538,7 @@ exports['default'] = _react2['default'].createClass({
 
   getInitialState: function getInitialState() {
     return {
-      tiles: []
+      tiles: _storesBaseStoreJs2['default'].getAllTiles()
     };
   },
 
@@ -20553,7 +20553,7 @@ exports['default'] = _react2['default'].createClass({
   },
 
   render: function render() {
-    return _react2['default'].createElement(_GameboardJsx2['default'], null);
+    return _react2['default'].createElement(_GameboardJsx2['default'], { tiles: this.state.tiles });
   }
 });
 module.exports = exports['default'];
