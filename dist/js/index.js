@@ -20583,6 +20583,8 @@ exports['default'] = _react2['default'].createClass({
       _react2['default'].createElement('br', null),
       ' ',
       _react2['default'].createElement('br', null),
+      ' ',
+      _react2['default'].createElement('br', null),
       _react2['default'].createElement(_GameboardJsx2['default'], { tiles: this.state.tiles })
     );
   }
@@ -20674,7 +20676,7 @@ var Header = _react2['default'].createClass({
       'div',
       { className: 'page-header' },
       _react2['default'].createElement(_ScoreboardJsx2['default'], { score: this.props.score }),
-      _react2['default'].createElement(_PlayAgainJsx2['default'], null),
+      _react2['default'].createElement(_PlayAgainJsx2['default'], { clickCounter: this.props.clickCounter, foundWinner: this.props.foundWinner }),
       _react2['default'].createElement(_MessageJsx2['default'], { message: this.props.message })
     );
   }
@@ -20730,10 +20732,22 @@ var PlayAgain = _react2['default'].createClass({
   displayName: 'PlayAgain',
 
   render: function render() {
+    var playAgainBtn = _react2['default'].createElement('p', null);
+
+    if (this.props.foundWinner == true || this.props.clickCounter == 9) {
+      playAgainBtn = _react2['default'].createElement(
+        'button',
+        { onClick: this.handleClick },
+        'Play Again'
+      );
+    } else if (this.props.clickCounter > 0) {
+      playAgainBtn = _react2['default'].createElement('p', null);
+    }
+
     return _react2['default'].createElement(
-      'button',
-      { onClick: this.handleClick },
-      'Play Again'
+      'div',
+      null,
+      playAgainBtn
     );
   },
 
@@ -20900,9 +20914,6 @@ var _Constants2 = _interopRequireDefault(_Constants);
 
 var _events = require('events');
 
-/* TODO: add play again button that re-sets tile.value to '',
- and thus allows scoreboard to update */
-
 var CHANGE_EVENT = 'change';
 
 var _tiles = [{ id: 'a1', value: '' }, { id: 'a2', value: '' }, { id: 'a3', value: '' }, { id: 'b1', value: '' }, { id: 'b2', value: '' }, { id: 'b3', value: '' }, { id: 'c1', value: '' }, { id: 'c2', value: '' }, { id: 'c3', value: '' }];
@@ -20914,6 +20925,39 @@ var _alertMessage = '';
 var _clickCounter = 0;
 
 var _winnerFound = false;
+
+/* -----tile click functions----- */
+
+function determineXorO(tile, child) {
+  _clickCounter = _clickCounter + 1;
+
+  if (_winnerFound == true) {
+    return;
+  } else {
+
+    var even = isEven(_clickCounter);
+
+    if (tile.value !== '') {
+      console.log(tile.id + " is considered to already have an X or O in it.");
+      _alertMessage = "I'm sorry. That spot has already been taken.";
+      _clickCounter = _clickCounter - 1;
+    } else if (even) {
+      tile.value = "o";
+      console.log(tile.id + " has gotten an O.");
+      _alertMessage = "";
+    } else if (even == false) {
+      tile.value = "x";
+      console.log(tile.id + " has gotten an X.");
+      _alertMessage = "";
+    } else {
+      console.log("ERROR!");
+      _clickCounter = _clickCounter - 1;
+    }
+    console.log(isEven(_clickCounter) + " is the value of isEven()");
+  }
+
+  findWinner();
+}
 
 function isEven(_x) {
   var _again = true;
@@ -20979,36 +21023,7 @@ function findWinner() {
   }
 }
 
-function determineXorO(tile, child) {
-  _clickCounter = _clickCounter + 1;
-
-  if (_winnerFound == true) {
-    return;
-  } else {
-
-    var even = isEven(_clickCounter);
-
-    if (tile.value !== '') {
-      console.log(tile.id + " is considered to already have an X or O in it.");
-      _alertMessage = "I'm sorry. That spot has already been taken.";
-      _clickCounter = _clickCounter - 1;
-    } else if (even) {
-      tile.value = "o";
-      console.log(tile.id + " has gotten an O.");
-      _alertMessage = "";
-    } else if (even == false) {
-      tile.value = "x";
-      console.log(tile.id + " has gotten an X.");
-      _alertMessage = "";
-    } else {
-      console.log("ERROR!");
-      _clickCounter = _clickCounter - 1;
-    }
-    console.log(isEven(_clickCounter) + " is the value of isEven()");
-  }
-
-  findWinner();
-}
+/* -----Play Again button click functions----- */
 
 function clearGame() {
   /* iterate through each tile in tiles */
@@ -21025,6 +21040,8 @@ function playAgain() {
   _winnerFound = false;
   _clickCounter = 0;
 }
+
+/* --------STORE BEGINS-------- */
 
 var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
   //get all tiles

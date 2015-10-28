@@ -8,7 +8,7 @@ var Header = React.createClass({
     return(
       <div className="page-header">
         <Scoreboard score={this.props.score} />
-        <PlayAgain />
+        <PlayAgain clickCounter={this.props.clickCounter} foundWinner={this.props.foundWinner}/>
         <Message message={this.props.message} />
       </div>
     )
