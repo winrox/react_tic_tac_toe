@@ -20586,7 +20586,27 @@ var Gameboard = _react2['default'].createClass({
     return _react2['default'].createElement(
       'table',
       null,
-      tiles
+      _react2['default'].createElement(
+        'tr',
+        null,
+        tiles[0],
+        tiles[1],
+        tiles[2]
+      ),
+      _react2['default'].createElement(
+        'tr',
+        null,
+        tiles[3],
+        tiles[4],
+        tiles[5]
+      ),
+      _react2['default'].createElement(
+        'tr',
+        null,
+        tiles[6],
+        tiles[7],
+        tiles[8]
+      )
     );
   }
 });
@@ -20668,6 +20688,8 @@ var _Constants = require('../Constants');
 var _Constants2 = _interopRequireDefault(_Constants);
 
 var _events = require('events');
+
+/* TODO: make sure last 2 clicks render */
 
 var CHANGE_EVENT = 'change';
 

@@ -3,6 +3,8 @@ import assign from 'object-assign';
 import Constants from '../Constants';
 import {EventEmitter} from 'events';
 
+/* TODO: make sure last 2 clicks render */
+
 var CHANGE_EVENT = 'change';
 
 var _tiles = [
