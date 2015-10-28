@@ -3,7 +3,8 @@ import assign from 'object-assign';
 import Constants from '../Constants';
 import {EventEmitter} from 'events';
 
-/* TODO: make sure last 2 clicks render */
+/* TODO: add play again button that re-sets tile.value to '',
+ and thus allows scoreboard to update */
 
 var CHANGE_EVENT = 'change';
 

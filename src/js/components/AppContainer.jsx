@@ -1,8 +1,8 @@
 import React from 'react';
 import Gameboard from './Gameboard.jsx';
 import Store from '../stores/Store.js';
-import Message from './Message.jsx';
-import Scoreboard from './Scoreboard.jsx';
+import Header from './Header.jsx';
+
 
 export default React.createClass({
   getInitialState: function () {
@@ -32,8 +32,13 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <Scoreboard score={this.state.score} />
-        <Message message={this.state.message} />
+        <Header
+          message={this.state.message}
+          foundWinner={this.state.foundWinner}
+          score={this.state.score}
+          clickCounter={this.state.clickCounter}
+        />
+        <br />
         <Gameboard tiles={this.state.tiles} />
       </div>
     );
