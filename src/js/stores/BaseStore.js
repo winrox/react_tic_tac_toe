@@ -9,10 +9,10 @@ var _tiles = [
   {id: 'a1', value: ''},
   {id: 'a2', value: ''},
   {id: 'a3', value: ''},
-  {id: 'b1', value: ''},
+  {id: 'b1', value: 'x'},
   {id: 'b2', value: ''},
   {id: 'b3', value: ''},
-  {id: 'c1', value: ''},
+  {id: 'c1', value: 'o'},
   {id: 'c2', value: ''},
   {id: 'c3', value: ''}
 ];

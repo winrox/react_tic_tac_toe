@@ -20609,6 +20609,12 @@ var Tile = _react2['default'].createClass({
   render: function render() {
     var srcImg = '../img/blank.png';
 
+    if (this.props.tile.value == 'x') {
+      srcImg = '../img/X.png';
+    } else if (this.props.tile.value == 'o') {
+      srcImg = '../img/O.png';
+    }
+
     return _react2['default'].createElement(
       'td',
       null,
@@ -20657,7 +20663,7 @@ var _events = require('events');
 
 var CHANGE_EVENT = 'change';
 
-var _tiles = [{ id: 'a1', value: '' }, { id: 'a2', value: '' }, { id: 'a3', value: '' }, { id: 'b1', value: '' }, { id: 'b2', value: '' }, { id: 'b3', value: '' }, { id: 'c1', value: '' }, { id: 'c2', value: '' }, { id: 'c3', value: '' }];
+var _tiles = [{ id: 'a1', value: '' }, { id: 'a2', value: '' }, { id: 'a3', value: '' }, { id: 'b1', value: 'x' }, { id: 'b2', value: '' }, { id: 'b3', value: '' }, { id: 'c1', value: 'o' }, { id: 'c2', value: '' }, { id: 'c3', value: '' }];
 
 var _score = { scoreX: 0, scoreO: 0 };
 
