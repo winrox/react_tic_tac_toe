@@ -5,7 +5,7 @@ import {EventEmitter} from 'events';
 
 var CHANGE_EVENT = 'change';
 
-var tiles = [
+var _tiles = [
   {id: 'a1', value: ''},
   {id: 'a2', value: ''},
   {id: 'a3', value: ''},
@@ -17,19 +17,22 @@ var tiles = [
   {id: 'c3', value: ''}
 ];
 
-var scoreX = 0;
+var _score = { scoreX: 0, scoreO: 0 };
 
-var scoreO = 0;
+var _alertMessage = '';
 
-var alertMessage = '';
+var _clickCounter = 0;
 
-var clickCounter = 0;
-
-var winnerFound = false;
+var _winnerFound = false;
 
 var BaseStore = assign({}, EventEmitter.prototype, {
+  //get all tiles
   getAllTiles: function () {
-    return tiles;
+    return _tiles;
+  },
+  //get scoreX & scoreO
+  getScore: function() {
+    return _score;
   },
 
   // emit change event to any view listening

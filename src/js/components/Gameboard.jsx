@@ -1,9 +1,18 @@
 import React from 'react';
-// import Tile from './tile';
+import Tile from './Tile.jsx';
 
 var Gameboard = React.createClass({
   render: function() {
-    return (<p>SOMETHING</p>);
+    var allTiles = this.props.tiles;
+    var tiles = [];
+
+    for(var key in allTiles) {
+      tiles.push(<Tile key={key} tile={allTiles[key]} />);
+    }
+
+    return (
+      <table>{tiles}</table>
+    );
   }
 });
 

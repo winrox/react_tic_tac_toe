@@ -20559,7 +20559,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../stores/BaseStore.js":167,"./Gameboard.jsx":165,"react":161}],165:[function(require,module,exports){
+},{"../stores/BaseStore.js":168,"./Gameboard.jsx":165,"react":161}],165:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20568,16 +20568,25 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-// import Tile from './tile';
+var _TileJsx = require('./Tile.jsx');
+
+var _TileJsx2 = _interopRequireDefault(_TileJsx);
 
 var Gameboard = _react2['default'].createClass({
   displayName: 'Gameboard',
 
   render: function render() {
+    var allTiles = this.props.tiles;
+    var tiles = [];
+
+    for (var key in allTiles) {
+      tiles.push(_react2['default'].createElement(_TileJsx2['default'], { key: key, tile: allTiles[key] }));
+    }
+
     return _react2['default'].createElement(
-      'p',
+      'table',
       null,
-      'SOMETHING'
+      tiles
     );
   }
 });
@@ -20585,7 +20594,33 @@ var Gameboard = _react2['default'].createClass({
 module.exports = Gameboard;
 
 
-},{"react":161}],166:[function(require,module,exports){
+},{"./Tile.jsx":166,"react":161}],166:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var Tile = _react2['default'].createClass({
+  displayName: 'Tile',
+
+  render: function render() {
+    var srcImg = '../img/blank.png';
+
+    return _react2['default'].createElement(
+      'td',
+      null,
+      _react2['default'].createElement('img', { id: this.props.tile.id, src: srcImg, className: 'img-rounded' })
+    );
+  }
+});
+
+module.exports = Tile;
+
+
+},{"react":161}],167:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20601,7 +20636,7 @@ var _componentsAppContainerJsx2 = _interopRequireDefault(_componentsAppContainer
 _react2['default'].render(_react2['default'].createElement(_componentsAppContainerJsx2['default'], null), document.getElementById('main'));
 
 
-},{"./components/AppContainer.jsx":164,"react":161}],167:[function(require,module,exports){
+},{"./components/AppContainer.jsx":164,"react":161}],168:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20622,21 +20657,24 @@ var _events = require('events');
 
 var CHANGE_EVENT = 'change';
 
-var tiles = [{ id: 'a1', value: '' }, { id: 'a2', value: '' }, { id: 'a3', value: '' }, { id: 'b1', value: '' }, { id: 'b2', value: '' }, { id: 'b3', value: '' }, { id: 'c1', value: '' }, { id: 'c2', value: '' }, { id: 'c3', value: '' }];
+var _tiles = [{ id: 'a1', value: '' }, { id: 'a2', value: '' }, { id: 'a3', value: '' }, { id: 'b1', value: '' }, { id: 'b2', value: '' }, { id: 'b3', value: '' }, { id: 'c1', value: '' }, { id: 'c2', value: '' }, { id: 'c3', value: '' }];
 
-var scoreX = 0;
+var _score = { scoreX: 0, scoreO: 0 };
 
-var scoreO = 0;
+var _alertMessage = '';
 
-var alertMessage = '';
+var _clickCounter = 0;
 
-var clickCounter = 0;
-
-var winnerFound = false;
+var _winnerFound = false;
 
 var BaseStore = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
+  //get all tiles
   getAllTiles: function getAllTiles() {
-    return tiles;
+    return _tiles;
+  },
+  //get scoreX & scoreO
+  getScore: function getScore() {
+    return _score;
   },
 
   // emit change event to any view listening
@@ -20676,4 +20714,4 @@ var BaseStore = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototyp
 module.exports = BaseStore;
 
 
-},{"../Constants":162,"../Dispatcher.js":163,"events":1,"object-assign":5}]},{},[166]);
+},{"../Constants":162,"../Dispatcher.js":163,"events":1,"object-assign":5}]},{},[167]);
