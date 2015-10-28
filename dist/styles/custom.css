@@ -1,18 +1,4 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @winrox
- Unwatch 1
-  Star 0
-  Fork 0 winrox/react_tic_tac_toe
- Branch: master  react_tic_tac_toe/css/custom.css
-c879f79  9 days ago
-@winrox winrox fixed issue with 0 score not adding to scoreboard
-1 contributor
-RawBlameHistory     106 lines (85 sloc)  1.41 KB
+
 /* Floated Columns ------------------ */
 
 #score {
@@ -32,7 +18,8 @@ RawBlameHistory     106 lines (85 sloc)  1.41 KB
 }
 
 #win-message {
-  padding-top: 30px;
+  padding-bottom: 0px;
+  padding-top: 15px;
   color: red;
   float: left;
 }
@@ -46,7 +33,7 @@ RawBlameHistory     106 lines (85 sloc)  1.41 KB
 #play-again button{
   float: left;
   margin-top: 50px;
-  margin-left: 25px;
+  margin-left: 50px;
   padding: 10px 50px;
   background-color: #18bc9c;
   font-weight: bold;

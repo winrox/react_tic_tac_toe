@@ -20581,6 +20581,8 @@ exports['default'] = _react2['default'].createClass({
         clickCounter: this.state.clickCounter
       }),
       _react2['default'].createElement('br', null),
+      ' ',
+      _react2['default'].createElement('br', null),
       _react2['default'].createElement(_GameboardJsx2['default'], { tiles: this.state.tiles })
     );
   }
@@ -20670,10 +20672,10 @@ var Header = _react2['default'].createClass({
   render: function render() {
     return _react2['default'].createElement(
       'div',
-      null,
+      { className: 'page-header' },
       _react2['default'].createElement(_ScoreboardJsx2['default'], { score: this.props.score }),
-      _react2['default'].createElement(_MessageJsx2['default'], { message: this.props.message }),
-      _react2['default'].createElement(_PlayAgainJsx2['default'], null)
+      _react2['default'].createElement(_PlayAgainJsx2['default'], null),
+      _react2['default'].createElement(_MessageJsx2['default'], { message: this.props.message })
     );
   }
 });
@@ -20697,7 +20699,7 @@ var Message = _react2["default"].createClass({
       "div",
       { className: "center-text" },
       _react2["default"].createElement(
-        "h1",
+        "h2",
         { className: "alert-message" },
         this.props.message
       )

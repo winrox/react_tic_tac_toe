@@ -38,7 +38,7 @@ export default React.createClass({
           score={this.state.score}
           clickCounter={this.state.clickCounter}
         />
-        <br />
+        <br /> <br /> 
         <Gameboard tiles={this.state.tiles} />
       </div>
     );

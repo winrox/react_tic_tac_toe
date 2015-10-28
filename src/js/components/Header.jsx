@@ -6,10 +6,10 @@ import PlayAgain from './PlayAgain.jsx';
 var Header = React.createClass({
   render: function() {
     return(
-      <div>
+      <div className="page-header">
         <Scoreboard score={this.props.score} />
-        <Message message={this.props.message} />
         <PlayAgain />
+        <Message message={this.props.message} />
       </div>
     )
   }
