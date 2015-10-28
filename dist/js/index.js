@@ -20581,7 +20581,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../stores/Store.js":172,"./Gameboard.jsx":166,"./Header.jsx":167,"react":161}],166:[function(require,module,exports){
+},{"../stores/Store.js":173,"./Gameboard.jsx":166,"./Header.jsx":167,"react":161}],166:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20636,7 +20636,7 @@ var Gameboard = _react2['default'].createClass({
 module.exports = Gameboard;
 
 
-},{"./Tile.jsx":170,"react":161}],167:[function(require,module,exports){
+},{"./Tile.jsx":171,"react":161}],167:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20653,6 +20653,10 @@ var _ScoreboardJsx = require('./Scoreboard.jsx');
 
 var _ScoreboardJsx2 = _interopRequireDefault(_ScoreboardJsx);
 
+var _PlayAgainJsx = require('./PlayAgain.jsx');
+
+var _PlayAgainJsx2 = _interopRequireDefault(_PlayAgainJsx);
+
 var Header = _react2['default'].createClass({
   displayName: 'Header',
 
@@ -20661,15 +20665,15 @@ var Header = _react2['default'].createClass({
       'div',
       null,
       _react2['default'].createElement(_ScoreboardJsx2['default'], { score: this.props.score }),
-      _react2['default'].createElement(_MessageJsx2['default'], { message: this.props.message })
+      _react2['default'].createElement(_MessageJsx2['default'], { message: this.props.message }),
+      _react2['default'].createElement(_PlayAgainJsx2['default'], null)
     );
   }
 });
 module.exports = Header;
-/* <PlayAgain /> */
 
 
-},{"./Message.jsx":168,"./Scoreboard.jsx":169,"react":161}],168:[function(require,module,exports){
+},{"./Message.jsx":168,"./PlayAgain.jsx":169,"./Scoreboard.jsx":170,"react":161}],168:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -20697,6 +20701,34 @@ module.exports = Message;
 
 
 },{"react":161}],169:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _HeaderJsx = require('./Header.jsx');
+
+var _HeaderJsx2 = _interopRequireDefault(_HeaderJsx);
+
+var PlayAgain = _react2['default'].createClass({
+  displayName: 'PlayAgain',
+
+  render: function render() {
+    return _react2['default'].createElement(
+      'button',
+      null,
+      'Play Again'
+    );
+  }
+});
+
+module.exports = PlayAgain;
+
+
+},{"./Header.jsx":167,"react":161}],170:[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -20776,7 +20808,7 @@ var Scoreboard = _react2["default"].createClass({
 module.exports = Scoreboard;
 
 
-},{"react":161}],170:[function(require,module,exports){
+},{"react":161}],171:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20816,7 +20848,7 @@ var Tile = _react2['default'].createClass({
 module.exports = Tile;
 
 
-},{"../actions/Actions.js":164,"react":161}],171:[function(require,module,exports){
+},{"../actions/Actions.js":164,"react":161}],172:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20832,7 +20864,7 @@ var _componentsAppContainerJsx2 = _interopRequireDefault(_componentsAppContainer
 _react2['default'].render(_react2['default'].createElement(_componentsAppContainerJsx2['default'], null), document.getElementById('main'));
 
 
-},{"./components/AppContainer.jsx":165,"react":161}],172:[function(require,module,exports){
+},{"./components/AppContainer.jsx":165,"react":161}],173:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -21018,4 +21050,4 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
 module.exports = Store;
 
 
-},{"../Constants":162,"../Dispatcher.js":163,"events":1,"object-assign":5}]},{},[171]);
+},{"../Constants":162,"../Dispatcher.js":163,"events":1,"object-assign":5}]},{},[172]);
