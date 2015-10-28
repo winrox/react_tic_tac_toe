@@ -20532,13 +20532,19 @@ var _storesStoreJs = require('../stores/Store.js');
 
 var _storesStoreJs2 = _interopRequireDefault(_storesStoreJs);
 
+var _MessageJsx = require('./Message.jsx');
+
+var _MessageJsx2 = _interopRequireDefault(_MessageJsx);
+
 exports['default'] = _react2['default'].createClass({
   displayName: 'AppContainer',
 
   getInitialState: function getInitialState() {
     return {
       tiles: _storesStoreJs2['default'].getAllTiles(),
-      clickCounter: _storesStoreJs2['default'].getClickValue()
+      clickCounter: _storesStoreJs2['default'].getClickValue(),
+      foundWinner: _storesStoreJs2['default'].foundWinnerStatus(),
+      message: _storesStoreJs2['default'].getMessage()
     };
   },
 
@@ -20548,18 +20554,26 @@ exports['default'] = _react2['default'].createClass({
 
   onChange: function onChange() {
     this.setState({
-      todos: _storesStoreJs2['default'].getAllTiles()
+      tiles: _storesStoreJs2['default'].getAllTiles(),
+      clickCounter: _storesStoreJs2['default'].getClickValue(),
+      foundWinner: _storesStoreJs2['default'].foundWinnerStatus(),
+      message: _storesStoreJs2['default'].getMessage()
     });
   },
 
   render: function render() {
-    return _react2['default'].createElement(_GameboardJsx2['default'], { tiles: this.state.tiles });
+    return _react2['default'].createElement(
+      'div',
+      null,
+      _react2['default'].createElement(_MessageJsx2['default'], { message: this.state.message }),
+      _react2['default'].createElement(_GameboardJsx2['default'], { tiles: this.state.tiles })
+    );
   }
 });
 module.exports = exports['default'];
 
 
-},{"../stores/Store.js":169,"./Gameboard.jsx":166,"react":161}],166:[function(require,module,exports){
+},{"../stores/Store.js":170,"./Gameboard.jsx":166,"./Message.jsx":167,"react":161}],166:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20614,7 +20628,30 @@ var Gameboard = _react2['default'].createClass({
 module.exports = Gameboard;
 
 
-},{"./Tile.jsx":167,"react":161}],167:[function(require,module,exports){
+},{"./Tile.jsx":168,"react":161}],167:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var Message = React.createClass({
+  displayName: "Message",
+
+  render: function render() {
+    return React.createElement(
+      "div",
+      { className: "center-text" },
+      React.createElement(
+        "h4",
+        { className: "alert-message" },
+        this.props.message
+      )
+    );
+  }
+});
+module.exports = Message;
+
+
+},{"react":161}],168:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20654,7 +20691,7 @@ var Tile = _react2['default'].createClass({
 module.exports = Tile;
 
 
-},{"../actions/Actions.js":164,"react":161}],168:[function(require,module,exports){
+},{"../actions/Actions.js":164,"react":161}],169:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20670,7 +20707,7 @@ var _componentsAppContainerJsx2 = _interopRequireDefault(_componentsAppContainer
 _react2['default'].render(_react2['default'].createElement(_componentsAppContainerJsx2['default'], null), document.getElementById('main'));
 
 
-},{"./components/AppContainer.jsx":165,"react":161}],169:[function(require,module,exports){
+},{"./components/AppContainer.jsx":165,"react":161}],170:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20746,19 +20783,19 @@ function findWinner() {
 
     if (getTileById(winIndex[0]).value == "x" && getTileById(winIndex[1]).value == "x" && getTileById(winIndex[2]).value == "x") {
       _winnerFound = true;
-      _score.scoreX = scoreX + 1;
+      _score.scoreX += 1;
       _alertMessage = "X wins!";
     }
 
     if (getTileById(winIndex[0]).value == "o" && getTileById(winIndex[1]).value == "o" && getTileById(winIndex[2]).value == "o") {
       _winnerFound = true;
-      _score.scoreO = scoreO + 1;
+      _score.scoreO += 1;
       _alertMessage = "O wins!";
     }
   }
   console.log('_winnerFound = ' + _winnerFound);
   console.log('_clickCounter = ' + _clickCounter);
-  if (_clickCounter == 8 && _winnerFound == false) {
+  if (_clickCounter == 9 && _winnerFound == false) {
     /* The click counter must update it's state asynchronously, because
     my console.log click counter is always one behind the state, therefore
     to get the no winner found message I had to change the value from 9 to 8. */
@@ -20781,12 +20818,12 @@ function determineXorO(tile, child) {
       _alertMessage = "I'm sorry. That spot has already been taken.";
       _clickCounter = _clickCounter - 1;
     } else if (even) {
-      tile.value = "x";
-      console.log(tile.id + " has gotten an X.");
-      _alertMessage = "";
-    } else if (even == false) {
       tile.value = "o";
       console.log(tile.id + " has gotten an O.");
+      _alertMessage = "";
+    } else if (even == false) {
+      tile.value = "x";
+      console.log(tile.id + " has gotten an X.");
       _alertMessage = "";
     } else {
       console.log("ERROR!");
@@ -20808,9 +20845,17 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
     return _score;
   },
 
+  foundWinnerStatus: function foundWinnerStatus() {
+    return _winnerFound;
+  },
+
   //get value of _clickCounter
   getClickValue: function getClickValue() {
     return _clickCounter;
+  },
+
+  getMessage: function getMessage() {
+    return _alertMessage;
   },
 
   // emit change event to any view listening
@@ -20847,4 +20892,4 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
 module.exports = Store;
 
 
-},{"../Constants":162,"../Dispatcher.js":163,"events":1,"object-assign":5}]},{},[168]);
+},{"../Constants":162,"../Dispatcher.js":163,"events":1,"object-assign":5}]},{},[169]);

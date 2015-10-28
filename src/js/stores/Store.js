@@ -145,6 +145,10 @@ var Store = assign({}, EventEmitter.prototype, {
     return _clickCounter;
   },
 
+  getMessage: function() {
+    return _alertMessage;
+  },
+
   // emit change event to any view listening
   emitChange: function() {
     this.emit(CHANGE_EVENT);
