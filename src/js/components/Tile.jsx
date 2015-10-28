@@ -1,4 +1,5 @@
 import React from 'react';
+import Actions from '../actions/Actions.js';
 
 var Tile = React.createClass({
   render: function() {
@@ -13,9 +14,13 @@ var Tile = React.createClass({
 
     return (
       <td>
-        <img id={this.props.tile.id} src={srcImg} className="img-rounded" />
+        <img id={this.props.tile.id} src={srcImg} className="img-rounded" onClick={this.handleTileClick}/>
       </td>
     );
+  },
+
+  handleTileClick: function() {
+    Actions.changeTile(this.props.tile);
   }
 });
 

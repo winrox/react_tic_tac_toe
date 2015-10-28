@@ -2,13 +2,13 @@ import Dispatcher from '../Dispatcher.js';
 import Constants from'../Constants.js';
 
 var Actions = {
-  // addItem: function(item) {
-  //   Dispatcher.handleViewAction({
-  //     actionType: Constants.ADD_ITEM,
-  //     item: item
-  //     })
-  //   }
+  changeTile: function(tile) {
+    Dispatcher.handleViewAction({
+      actionType: Constants.CHANGE_TILE,
+      item: tile
+      })
+    }
 }
 
 
-module.exports = Actions
+module.exports = Actions;

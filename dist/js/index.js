@@ -20455,18 +20455,12 @@ module.exports = require('./lib/React');
 'use strict';
 
 module.exports = {
-  ADD_ITEM: 'ADD_ITEM',
-  REMOVE_ITEM: 'REMOVE_ITEM',
-  TOGGLE_STATE_COMPLETE: 'TOGGLE_STATE_COMPLETE'
+  CHANGE_TILE: 'CHANGE_TILE'
 };
 
 
 },{}],163:[function(require,module,exports){
 'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -20480,39 +20474,44 @@ var _objectAssign = require('object-assign');
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-/**
- * Purpose: to create a single dispatcher instance for use throughout the
- * entire app. The two methods below are merely thin wrappers that describe
- * where the action originated from. Not mandatory, but may be helpful
- **/
-exports['default'] = (0, _objectAssign2['default'])(new _flux.Dispatcher(), {
-
-  /**
-   * This does nothing yet, but will come in handy if you need to respond
-   * to server-originated events and treat them differently...
-   **/
-  handleServerAction: function handleServerAction(action) {
-    this.dispatch({
-      source: _Constants2['default'].ActionSources.SERVER_ACTION,
-      action: action
-    });
-  },
-
-  /**
-   * Very thin wrapper around the core dispatcher API, just to signify
-   * that actions triggered here originated on the client-side
-   **/
+var AppDispatcher = (0, _objectAssign2['default'])(new _flux.Dispatcher(), {
   handleViewAction: function handleViewAction(action) {
     this.dispatch({
-      source: _Constants2['default'].ActionSources.VIEW_ACTION,
+      source: 'VIEW_ACTION',
       action: action
     });
   }
 });
-module.exports = exports['default'];
+
+module.exports = AppDispatcher;
 
 
 },{"./Constants":162,"flux":3,"object-assign":5}],164:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _DispatcherJs = require('../Dispatcher.js');
+
+var _DispatcherJs2 = _interopRequireDefault(_DispatcherJs);
+
+var _ConstantsJs = require('../Constants.js');
+
+var _ConstantsJs2 = _interopRequireDefault(_ConstantsJs);
+
+var Actions = {
+  changeTile: function changeTile(tile) {
+    _DispatcherJs2['default'].handleViewAction({
+      actionType: _ConstantsJs2['default'].CHANGE_TILE,
+      item: tile
+    });
+  }
+};
+
+module.exports = Actions;
+
+
+},{"../Constants.js":162,"../Dispatcher.js":163}],165:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -20529,26 +20528,27 @@ var _GameboardJsx = require('./Gameboard.jsx');
 
 var _GameboardJsx2 = _interopRequireDefault(_GameboardJsx);
 
-var _storesBaseStoreJs = require('../stores/BaseStore.js');
+var _storesStoreJs = require('../stores/Store.js');
 
-var _storesBaseStoreJs2 = _interopRequireDefault(_storesBaseStoreJs);
+var _storesStoreJs2 = _interopRequireDefault(_storesStoreJs);
 
 exports['default'] = _react2['default'].createClass({
   displayName: 'AppContainer',
 
   getInitialState: function getInitialState() {
     return {
-      tiles: _storesBaseStoreJs2['default'].getAllTiles()
+      tiles: _storesStoreJs2['default'].getAllTiles(),
+      clickCounter: _storesStoreJs2['default'].getClickValue()
     };
   },
 
   componentDidMount: function componentDidMount() {
-    _storesBaseStoreJs2['default'].addChangeListener(this.onChange);
+    _storesStoreJs2['default'].addChangeListener(this.onChange);
   },
 
   onChange: function onChange() {
     this.setState({
-      todos: _storesBaseStoreJs2['default'].getAllTiles()
+      todos: _storesStoreJs2['default'].getAllTiles()
     });
   },
 
@@ -20559,7 +20559,7 @@ exports['default'] = _react2['default'].createClass({
 module.exports = exports['default'];
 
 
-},{"../stores/BaseStore.js":168,"./Gameboard.jsx":165,"react":161}],165:[function(require,module,exports){
+},{"../stores/Store.js":169,"./Gameboard.jsx":166,"react":161}],166:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20594,7 +20594,7 @@ var Gameboard = _react2['default'].createClass({
 module.exports = Gameboard;
 
 
-},{"./Tile.jsx":166,"react":161}],166:[function(require,module,exports){
+},{"./Tile.jsx":167,"react":161}],167:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20602,6 +20602,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'd
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _actionsActionsJs = require('../actions/Actions.js');
+
+var _actionsActionsJs2 = _interopRequireDefault(_actionsActionsJs);
 
 var Tile = _react2['default'].createClass({
   displayName: 'Tile',
@@ -20618,15 +20622,19 @@ var Tile = _react2['default'].createClass({
     return _react2['default'].createElement(
       'td',
       null,
-      _react2['default'].createElement('img', { id: this.props.tile.id, src: srcImg, className: 'img-rounded' })
+      _react2['default'].createElement('img', { id: this.props.tile.id, src: srcImg, className: 'img-rounded', onClick: this.handleTileClick })
     );
+  },
+
+  handleTileClick: function handleTileClick() {
+    _actionsActionsJs2['default'].changeTile(this.props.tile);
   }
 });
 
 module.exports = Tile;
 
 
-},{"react":161}],167:[function(require,module,exports){
+},{"../actions/Actions.js":164,"react":161}],168:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20642,7 +20650,7 @@ var _componentsAppContainerJsx2 = _interopRequireDefault(_componentsAppContainer
 _react2['default'].render(_react2['default'].createElement(_componentsAppContainerJsx2['default'], null), document.getElementById('main'));
 
 
-},{"./components/AppContainer.jsx":164,"react":161}],168:[function(require,module,exports){
+},{"./components/AppContainer.jsx":165,"react":161}],169:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20663,7 +20671,7 @@ var _events = require('events');
 
 var CHANGE_EVENT = 'change';
 
-var _tiles = [{ id: 'a1', value: '' }, { id: 'a2', value: '' }, { id: 'a3', value: '' }, { id: 'b1', value: 'x' }, { id: 'b2', value: '' }, { id: 'b3', value: '' }, { id: 'c1', value: 'o' }, { id: 'c2', value: '' }, { id: 'c3', value: '' }];
+var _tiles = [{ id: 'a1', value: '' }, { id: 'a2', value: '' }, { id: 'a3', value: '' }, { id: 'b1', value: '' }, { id: 'b2', value: '' }, { id: 'b3', value: '' }, { id: 'c1', value: '' }, { id: 'c2', value: '' }, { id: 'c3', value: '' }];
 
 var _score = { scoreX: 0, scoreO: 0 };
 
@@ -20673,7 +20681,102 @@ var _clickCounter = 0;
 
 var _winnerFound = false;
 
-var BaseStore = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
+function isEven(_x) {
+  var _again = true;
+
+  _function: while (_again) {
+    var num = _x;
+    _again = false;
+
+    if (num === 0) {
+      return true;
+    } else if (num === 1) {
+      return false;
+    } else if (num < 0) {
+      _x = num + 2;
+      _again = true;
+      continue _function;
+    } else {
+      _x = num - 2;
+      _again = true;
+      continue _function;
+    }
+  }
+}
+
+function findWinner() {
+  var win = [['a1', 'a2', 'a3'], ['b1', 'b2', 'b3'], ['c1', 'c2', 'c3'], ['a1', 'b1', 'c1'], ['a2', 'b2', 'c2'], ['a3', 'b3', 'c3'], ['a1', 'b2', 'c3'], ['a3', 'b2', 'c1']];
+
+  function getTileById(id) {
+    /* iterate through each tile in tiles */
+    for (var index in _tiles) {
+      var tile = _tiles[index];
+
+      if (tile.id == id) {
+        /* if this is the tile we are looking for then return it */
+        return tile;
+      }
+    }
+  }
+
+  for (var i in win) {
+    var winIndex = win[i];
+
+    if (getTileById(winIndex[0]).value == "x" && getTileById(winIndex[1]).value == "x" && getTileById(winIndex[2]).value == "x") {
+      _winnerFound = true;
+      _score.scoreX = scoreX + 1;
+      _alertMessage = "X wins!";
+    }
+
+    if (getTileById(winIndex[0]).value == "o" && getTileById(winIndex[1]).value == "o" && getTileById(winIndex[2]).value == "o") {
+      _winnerFound = true;
+      _score.scoreO = scoreO + 1;
+      _alertMessage = "O wins!";
+    }
+  }
+  console.log('_winnerFound = ' + _winnerFound);
+  console.log('_clickCounter = ' + _clickCounter);
+  if (_clickCounter == 8 && _winnerFound == false) {
+    /* The click counter must update it's state asynchronously, because
+    my console.log click counter is always one behind the state, therefore
+    to get the no winner found message I had to change the value from 9 to 8. */
+    _alertMessage = "No winner this time. Please play again.";
+    //need to show play-again button
+  }
+}
+
+function determineXorO(tile, child) {
+  _clickCounter = _clickCounter + 1;
+
+  if (_winnerFound == true) {
+    return;
+  } else {
+
+    var even = isEven(_clickCounter);
+
+    if (tile.value !== '') {
+      console.log(tile.id + " is considered to already have an X or O in it.");
+      _alertMessage = "I'm sorry. That spot has already been taken.";
+      _clickCounter = _clickCounter - 1;
+    } else if (even) {
+      tile.value = "x";
+      console.log(tile.id + " has gotten an X.");
+      _alertMessage = "";
+    } else if (even == false) {
+      tile.value = "o";
+      console.log(tile.id + " has gotten an O.");
+      _alertMessage = "";
+    } else {
+      console.log("ERROR!");
+      _clickCounter = _clickCounter - 1;
+    }
+    console.log(isEven(_clickCounter) + " is the value of isEven()");
+  }
+
+  findWinner();
+}
+
+var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
   //get all tiles
   getAllTiles: function getAllTiles() {
     return _tiles;
@@ -20681,6 +20784,11 @@ var BaseStore = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototyp
   //get scoreX & scoreO
   getScore: function getScore() {
     return _score;
+  },
+
+  //get value of _clickCounter
+  getClickValue: function getClickValue() {
+    return _clickCounter;
   },
 
   // emit change event to any view listening
@@ -20699,25 +20807,22 @@ var BaseStore = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototyp
     var action = payload.action;
     var todoText;
 
-    // // switch statement looks for a matching action case
-    // switch(action.actionType) {
-    //   case Constants.ADD_ITEM:
-    //     todoText = action.item.trim(); //removes white space from beginning and end of todoText
-    //     if(todoText !== '') {
-    //       add(todoText); // puts the todo item into the store
-    //       console.log(todos);
-    //       Store.emitChange(); // tell the view the store has changed
-    //       break;
-    //     }
-    //
-    //   // add more cases for other action types
-    //   return true //No errors. Needed by promise in dispatcher.
-    // }
+    // switch statement looks for a matching action case
+    switch (action.actionType) {
+      case _Constants2['default'].CHANGE_TILE:
+        var tile = action.item;
+        determineXorO(tile);
+        Store.emitChange(); // tell the view the store has changed
+        break;
+
+        // add more cases for other action types
+        return true; //No errors. Needed by promise in dispatcher.
+    }
   })
 
 });
 
-module.exports = BaseStore;
+module.exports = Store;
 
 
-},{"../Constants":162,"../Dispatcher.js":163,"events":1,"object-assign":5}]},{},[167]);
+},{"../Constants":162,"../Dispatcher.js":163,"events":1,"object-assign":5}]},{},[168]);

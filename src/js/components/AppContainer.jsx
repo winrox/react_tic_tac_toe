@@ -1,21 +1,22 @@
 import React from 'react';
 import Gameboard from './Gameboard.jsx';
-import BaseStore from '../stores/BaseStore.js';
+import Store from '../stores/Store.js';
 
 export default React.createClass({
   getInitialState: function () {
     return {
-      tiles: BaseStore.getAllTiles()
+      tiles: Store.getAllTiles(),
+      clickCounter: Store.getClickValue()
     }
   },
 
   componentDidMount: function() {
-    BaseStore.addChangeListener(this.onChange);
+    Store.addChangeListener(this.onChange);
   },
 
   onChange: function() {
     this.setState({
-      todos: BaseStore.getAllTiles()
+      todos: Store.getAllTiles()
     });
   },
 
