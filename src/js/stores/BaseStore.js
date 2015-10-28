@@ -1,9 +1,11 @@
-import Dispatcher from '../dispatcher/dispatcher.js';
+import Dispatcher from '../Dispatcher.js';
 import assign from 'object-assign';
 import Constants from '../Constants';
 import {EventEmitter} from 'events';
 
-var tiles= [
+var CHANGE_EVENT = 'change';
+
+var tiles = [
   {id: 'a1', value: ''},
   {id: 'a2', value: ''},
   {id: 'a3', value: ''},
@@ -25,7 +27,11 @@ var clickCounter = 0;
 
 var winnerFound = false;
 
-var Store = assign({}, EventEmitter.prototype, {
+var BaseStore = assign({}, EventEmitter.prototype, {
+  getAllTiles: function () {
+    return tiles;
+  },
+
   // emit change event to any view listening
   emitChange: function() {
     this.emit(CHANGE_EVENT);
@@ -42,22 +48,22 @@ var Store = assign({}, EventEmitter.prototype, {
     var action = payload.action;
     var todoText;
 
-    // switch statement looks for a matching action case
-    switch(action.actionType) {
-      // case Constants.ADD_ITEM:
-      //   todoText = action.item.trim(); //removes white space from beginning and end of todoText
-      //   if(todoText !== '') {
-      //     add(todoText); // puts the todo item into the store
-      //     console.log(todos);
-      //     Store.emitChange(); // tell the view the store has changed
-      //     break;
-        }
-
-      // add more cases for other action types
-      return true; //No errors. Needed by promise in dispatcher.
-    }
+    // // switch statement looks for a matching action case
+    // switch(action.actionType) {
+    //   case Constants.ADD_ITEM:
+    //     todoText = action.item.trim(); //removes white space from beginning and end of todoText
+    //     if(todoText !== '') {
+    //       add(todoText); // puts the todo item into the store
+    //       console.log(todos);
+    //       Store.emitChange(); // tell the view the store has changed
+    //       break;
+    //     }
+    //
+    //   // add more cases for other action types
+    //   return true //No errors. Needed by promise in dispatcher.
+    // }
   })
 
 });
 
-module.exports = Store;
+module.exports = BaseStore;
