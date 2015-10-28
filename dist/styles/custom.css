@@ -1,0 +1,122 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @winrox
+ Unwatch 1
+  Star 0
+  Fork 0 winrox/react_tic_tac_toe
+ Branch: master  react_tic_tac_toe/css/custom.css
+c879f79  9 days ago
+@winrox winrox fixed issue with 0 score not adding to scoreboard
+1 contributor
+RawBlameHistory     106 lines (85 sloc)  1.41 KB
+/* Floated Columns ------------------ */
+
+#score {
+  width: 87px;
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+#heading {
+  width: 15%%;
+  margin-right: 10px;
+  padding: 5px 10px 30px;
+  margin: 0;
+  text-align: left;
+  float: left;
+}
+
+#win-message {
+  padding-top: 30px;
+  color: red;
+  float: left;
+}
+
+#replay {
+  float: right;
+  text-align: center;
+  padding: 10px;
+}
+
+#play-again button{
+  float: left;
+  margin-top: 50px;
+  margin-left: 25px;
+  padding: 10px 50px;
+  background-color: #18bc9c;
+  font-weight: bold;
+}
+
+/* Float Clearfix ------------------ */
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/*----------------------------------*/
+
+.container td {
+  padding: 0.05%;
+}
+
+ .responsive div{
+   max-width: 100%;
+   height: auto;
+ }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*table stylings here*/
+
+table {
+  max-width: 100%;
+  height: auto;
+  background: #18bc9c;
+  border-width: 2px;
+  border-color:  black;
+  border-collapse: collapse;
+}
+
+table th {
+  background: #18bc9c;
+  border-style: solid;
+  border-width: 2px;
+  border-color:  black;
+  border-collapse: collapse;
+}
+
+table td {
+  text-align: center;
+  background: #18bc9c;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-collapse: collapse;
+
+
+
+  /* --------NEWER------------ */
+
+  .react-logo {
+    width: 15%;
+    height: auto;
+  }
+
+  #game-header {
+    color: red;
+  }
+
+  .alert-message {
+    padding-right: 5%;
+  }
+Status API Training Shop Blog About Pricing
+© 2015 GitHub, Inc. Terms Privacy Security Contact Help

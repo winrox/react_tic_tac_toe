@@ -14,7 +14,7 @@ var Tile = React.createClass({
 
     return (
       <td>
-        <img id={this.props.tile.id} src={srcImg} className="img-rounded" onClick={this.handleTileClick}/>
+        <img id={this.props.tile.id} src={srcImg} onClick={this.handleTileClick}/>
       </td>
     );
   },

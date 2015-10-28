@@ -20642,7 +20642,7 @@ var Tile = _react2['default'].createClass({
     return _react2['default'].createElement(
       'td',
       null,
-      _react2['default'].createElement('img', { id: this.props.tile.id, src: srcImg, className: 'img-rounded', onClick: this.handleTileClick })
+      _react2['default'].createElement('img', { id: this.props.tile.id, src: srcImg, onClick: this.handleTileClick })
     );
   },
 
