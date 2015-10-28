@@ -20641,7 +20641,7 @@ var Message = React.createClass({
       "div",
       { className: "center-text" },
       React.createElement(
-        "h4",
+        "h1",
         { className: "alert-message" },
         this.props.message
       )

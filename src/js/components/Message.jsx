@@ -4,9 +4,9 @@ var Message = React.createClass({
   render: function() {
     return (
       <div className="center-text">
-        <h4 className="alert-message">
+        <h1 className="alert-message">
           {this.props.message}
-        </h4>
+        </h1>
       </div>
     );
   }
