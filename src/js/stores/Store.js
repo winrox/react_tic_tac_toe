@@ -176,7 +176,7 @@ var Store = assign({}, EventEmitter.prototype, {
     // switch statement looks for a matching action case
     switch(action.actionType) {
       case Constants.CHANGE_TILE:
-        var tile = action.item;
+        var tile = action.data;
         determineXorO(tile);
         Store.emitChange(); // tell the view the store has changed
         break;

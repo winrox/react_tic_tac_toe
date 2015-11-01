@@ -20500,18 +20500,17 @@ var _ConstantsJs = require('../Constants.js');
 
 var _ConstantsJs2 = _interopRequireDefault(_ConstantsJs);
 
+function Dispatch(actionType, data) {
+  _DispatcherJs2['default'].handleViewAction({ actionType: actionType, data: data });
+}
+
 var Actions = {
   changeTile: function changeTile(tile) {
-    _DispatcherJs2['default'].handleViewAction({
-      actionType: _ConstantsJs2['default'].CHANGE_TILE,
-      item: tile
-    });
+    Dispatch(_ConstantsJs2['default'].CHANGE_TILE, tile);
   },
 
   playAgainClick: function playAgainClick() {
-    _DispatcherJs2['default'].handleViewAction({
-      actionType: _ConstantsJs2['default'].PLAY_AGAIN
-    });
+    Dispatch(_ConstantsJs2['default'].PLAY_AGAIN);
   }
 };
 
@@ -21060,7 +21059,7 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
     // switch statement looks for a matching action case
     switch (action.actionType) {
       case _Constants2['default'].CHANGE_TILE:
-        var tile = action.item;
+        var tile = action.data;
         determineXorO(tile);
         Store.emitChange(); // tell the view the store has changed
         break;

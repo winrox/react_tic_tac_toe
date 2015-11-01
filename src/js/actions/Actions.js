@@ -1,18 +1,17 @@
 import Dispatcher from '../Dispatcher.js';
 import Constants from'../Constants.js';
 
+function Dispatch(actionType, data){
+  Dispatcher.handleViewAction({actionType: actionType, data: data})
+}
+
 var Actions = {
   changeTile: function(tile) {
-    Dispatcher.handleViewAction({
-      actionType: Constants.CHANGE_TILE,
-      item: tile
-      })
+    Dispatch(Constants.CHANGE_TILE, tile);
   },
 
   playAgainClick: function() {
-      Dispatcher.handleViewAction({
-        actionType: Constants.PLAY_AGAIN
-      })
+    Dispatch(Constants.PLAY_AGAIN);
   }
 }
 
