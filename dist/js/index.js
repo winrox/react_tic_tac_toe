@@ -20547,13 +20547,7 @@ exports['default'] = _react2['default'].createClass({
   displayName: 'AppContainer',
 
   getInitialState: function getInitialState() {
-    return {
-      tiles: _storesStoreJs2['default'].getAllTiles(),
-      clickCounter: _storesStoreJs2['default'].getClickValue(),
-      foundWinner: _storesStoreJs2['default'].foundWinnerStatus(),
-      message: _storesStoreJs2['default'].getMessage(),
-      score: _storesStoreJs2['default'].getScore()
-    };
+    return _storesStoreJs2['default'].getState();
   },
 
   componentDidMount: function componentDidMount() {
@@ -20561,13 +20555,7 @@ exports['default'] = _react2['default'].createClass({
   },
 
   onChange: function onChange() {
-    this.setState({
-      tiles: _storesStoreJs2['default'].getAllTiles(),
-      clickCounter: _storesStoreJs2['default'].getClickValue(),
-      foundWinner: _storesStoreJs2['default'].foundWinnerStatus(),
-      message: _storesStoreJs2['default'].getMessage(),
-      score: _storesStoreJs2['default'].getScore()
-    });
+    this.setState(_storesStoreJs2['default'].getState());
   },
 
   render: function render() {
@@ -21044,26 +21032,13 @@ function playAgain() {
 /* --------STORE BEGINS-------- */
 
 var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
-  //get all tiles
-  getAllTiles: function getAllTiles() {
-    return _tiles;
-  },
-  //get scoreX & scoreO
-  getScore: function getScore() {
-    return _score;
-  },
 
-  foundWinnerStatus: function foundWinnerStatus() {
-    return _winnerFound;
-  },
-
-  //get value of _clickCounter
-  getClickValue: function getClickValue() {
-    return _clickCounter;
-  },
-
-  getMessage: function getMessage() {
-    return _alertMessage;
+  getState: function getState() {
+    return { tiles: _tiles,
+      score: _score,
+      foundWinner: _winnerFound,
+      clickCounter: _clickCounter,
+      message: _alertMessage };
   },
 
   // emit change event to any view listening

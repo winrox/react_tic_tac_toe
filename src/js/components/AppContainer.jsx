@@ -6,13 +6,7 @@ import Header from './Header.jsx';
 
 export default React.createClass({
   getInitialState: function () {
-    return {
-      tiles: Store.getAllTiles(),
-      clickCounter: Store.getClickValue(),
-      foundWinner: Store.foundWinnerStatus(),
-      message: Store.getMessage(),
-      score: Store.getScore()
-    }
+    return Store.getState();
   },
 
   componentDidMount: function() {
@@ -20,16 +14,10 @@ export default React.createClass({
   },
 
   onChange: function() {
-    this.setState({
-      tiles: Store.getAllTiles(),
-      clickCounter: Store.getClickValue(),
-      foundWinner: Store.foundWinnerStatus(),
-      message: Store.getMessage(),
-      score: Store.getScore()
-    });
+    this.setState( Store.getState());
   },
 
-  render() {
+  render: function() {
     return (
       <div>
         <Header

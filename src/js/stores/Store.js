@@ -148,26 +148,13 @@ function playAgain() {
 /* --------STORE BEGINS-------- */
 
 var Store = assign({}, EventEmitter.prototype, {
-  //get all tiles
-  getAllTiles: function () {
-    return _tiles;
-  },
-  //get scoreX & scoreO
-  getScore: function() {
-    return _score;
-  },
 
-  foundWinnerStatus: function() {
-    return _winnerFound;
-  },
-
-  //get value of _clickCounter
-  getClickValue: function() {
-    return _clickCounter;
-  },
-
-  getMessage: function() {
-    return _alertMessage;
+  getState: function() {
+    return({tiles: _tiles,
+      score: _score,
+      foundWinner: _winnerFound,
+      clickCounter: _clickCounter,
+      message: _alertMessage});
   },
 
   // emit change event to any view listening
