@@ -14,13 +14,13 @@ var Tile = React.createClass({
 
     return (
       <td>
-        <img src={srcImg} onClick={this.handleTileClick}/>
+        <img index={this.props.index} src={srcImg} onClick={this.handleTileClick}/>
       </td>
     );
   },
 
   handleTileClick: function() {
-    Actions.changeTile(this.props.tile);
+    Actions.changeTile(this.props.index);
   }
 });
 

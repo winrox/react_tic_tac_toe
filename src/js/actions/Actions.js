@@ -6,8 +6,8 @@ function Dispatch(actionType, data){
 }
 
 var Actions = {
-  changeTile: function(tile) {
-    Dispatch(Constants.CHANGE_TILE, tile);
+  changeTile: function(tileIndex) {
+    Dispatch(Constants.CHANGE_TILE, tileIndex);
   },
 
   playAgainClick: function() {

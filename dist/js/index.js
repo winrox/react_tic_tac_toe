@@ -20505,8 +20505,8 @@ function Dispatch(actionType, data) {
 }
 
 var Actions = {
-  changeTile: function changeTile(tile) {
-    Dispatch(_ConstantsJs2['default'].CHANGE_TILE, tile);
+  changeTile: function changeTile(tileIndex) {
+    Dispatch(_ConstantsJs2['default'].CHANGE_TILE, tileIndex);
   },
 
   playAgainClick: function playAgainClick() {
@@ -20597,11 +20597,20 @@ var Gameboard = _react2['default'].createClass({
 
   eachTileInRow: function eachTileInRow(sliceStart, sliceEnd) {
     var allTiles = this.props.tiles;
-    var row1 = [];
-    row1 = allTiles.slice(sliceStart, sliceEnd).map(function (tile, index) {
-      return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
+    var row = [];
+
+    row = allTiles.slice(sliceStart, sliceEnd).map(function (tile, index) {
+      var realIndex = index;
+      if (sliceStart == 3) {
+        realIndex += 3;
+      }
+      if (sliceStart == 6) {
+        realIndex += 6;
+      }
+      return _react2['default'].createElement(_TileJsx2['default'], { tile: tile, index: realIndex });
     });
-    return row1;
+
+    return row;
   },
 
   render: function render() {
@@ -20633,61 +20642,6 @@ var Gameboard = _react2['default'].createClass({
 });
 
 module.exports = Gameboard;
-
-// var row1 = allTiles.slice(0,2);
-// var row2 = allTiles.slice(3,5);
-// var row3 = allTiles.slice(6,8);
-
-/* start with something like:
-
-return(
-  <table>
-    {allTiles.map(function( tile, index ){}}
-  </table>
-)
-
-*/
-// then use something like:
-
-// Object.keys(allTiles).map(function(item){
-// item+=1;
-// return (item % 3 == 0);
-// });
-// > [false, false, true, false, false, true, false, false, true]
-
-// if true add in </tr><tr> after the tile (for the first 2 trues only)
-//
-// function getRow(rowLetter){
-//     var tiles = allTiles.map(function(tile, index) {
-//     if(tile == rowLetter){
-//       return (<Tile key={index} tile={tile} />);
-//     }
-//   })
-//   return tiles;
-// };
-//
-// var tiles = allTiles.slice(0,3).map(function(tile, index) {
-//
-//
-//   {allTiles,slie(2,3).map(function(tile, index) {
-//     var row1 = []; var row2 = []; var row3 = [];
-//
-//     if(index == 0 || index == 1 || index == 2){
-//       row1.push(<Tile key={index} tile={tile} />);
-//     }
-//     else if(index == 3 || index == 4 || index == 5){
-//       row2.push(<Tile key={index} tile={tile} />);
-//     }
-//     else if(index == 6 || index == 7 || index == 8){
-//       row3.push(<Tile key={index} tile={tile} />);
-//     }
-//
-//     return (
-//       <tr>{row1}</tr>
-//       <tr>{row2}</tr>
-//       <tr>{row3}</tr>
-//     )
-//   })}
 
 
 },{"./Tile.jsx":171,"react":161}],167:[function(require,module,exports){
@@ -20910,12 +20864,12 @@ var Tile = _react2['default'].createClass({
     return _react2['default'].createElement(
       'td',
       null,
-      _react2['default'].createElement('img', { src: srcImg, onClick: this.handleTileClick })
+      _react2['default'].createElement('img', { index: this.props.index, src: srcImg, onClick: this.handleTileClick })
     );
   },
 
   handleTileClick: function handleTileClick() {
-    _actionsActionsJs2['default'].changeTile(this.props.tile);
+    _actionsActionsJs2['default'].changeTile(this.props.index);
   }
 });
 
@@ -20971,7 +20925,7 @@ var _winnerFound = false;
 
 /* -----tile click functions----- */
 
-function determineXorO(tile, child) {
+function determineXorO(tileIndex) {
   _clickCounter = _clickCounter + 1;
 
   if (_winnerFound == true) {
@@ -20980,14 +20934,14 @@ function determineXorO(tile, child) {
 
     var even = isEven(_clickCounter);
 
-    if (tile !== '') {
+    if (_tiles[tileIndex] !== '') {
       _alertMessage = "I'm sorry. That spot has already been taken.";
       _clickCounter = _clickCounter - 1;
     } else if (even) {
-      tile = "o";
+      _tiles[tileIndex] = 'o';
       _alertMessage = "";
     } else if (even == false) {
-      tile = "x";
+      _tiles[tileIndex] = 'x';
       _alertMessage = "";
     } else {
       console.log("ERROR!");
@@ -21107,8 +21061,8 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
     // switch statement looks for a matching action case
     switch (action.actionType) {
       case _Constants2['default'].CHANGE_TILE:
-        var tile = action.data;
-        determineXorO(tile);
+        var tileIndex = action.data;
+        determineXorO(tileIndex);
         Store.emitChange(); // tell the view the store has changed
         break;
 

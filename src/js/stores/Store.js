@@ -17,7 +17,7 @@ var _winnerFound = false;
 
 /* -----tile click functions----- */
 
-function determineXorO(tile, child){
+function determineXorO(tileIndex){
   _clickCounter = _clickCounter + 1;
 
     if(_winnerFound == true) {
@@ -26,18 +26,18 @@ function determineXorO(tile, child){
 
       var even = isEven(_clickCounter);
 
-      if(tile !== '') {
+      if(_tiles[tileIndex] !== '') {
         _alertMessage = "I'm sorry. That spot has already been taken.";
         _clickCounter = _clickCounter - 1;
       }
 
        else if(even) {
-        tile = "o"
+        _tiles[tileIndex] = 'o'
         _alertMessage = "";
       }
 
       else if(even == false) {
-        tile = "x"
+        _tiles[tileIndex] = 'x'
         _alertMessage = "";
       }
 
@@ -158,8 +158,8 @@ var Store = assign({}, EventEmitter.prototype, {
     // switch statement looks for a matching action case
     switch(action.actionType) {
       case Constants.CHANGE_TILE:
-        var tile = action.data;
-        determineXorO(tile);
+        var tileIndex = action.data;
+        determineXorO(tileIndex);
         Store.emitChange(); // tell the view the store has changed
         break;
 
