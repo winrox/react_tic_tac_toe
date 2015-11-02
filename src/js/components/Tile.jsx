@@ -5,16 +5,16 @@ var Tile = React.createClass({
   render: function() {
     var srcImg = '../img/blank.png';
 
-    if(this.props.tile.value == 'x') {
+    if(this.props.tile == 'x') {
       srcImg = '../img/X.png'
     }
-    else if(this.props.tile.value == 'o') {
+    else if(this.props.tile == 'o') {
       srcImg = '../img/O.png'
     }
 
     return (
       <td>
-        <img id={this.props.tile.id} src={srcImg} onClick={this.handleTileClick}/>
+        <img src={srcImg} onClick={this.handleTileClick}/>
       </td>
     );
   },

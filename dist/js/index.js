@@ -20595,17 +20595,20 @@ var _TileJsx2 = _interopRequireDefault(_TileJsx);
 var Gameboard = _react2['default'].createClass({
   displayName: 'Gameboard',
 
-  render: function render() {
+  eachTileInRow: function eachTileInRow(sliceStart, sliceEnd) {
     var allTiles = this.props.tiles;
+    var row1 = [];
+    row1 = allTiles.slice(sliceStart, sliceEnd).map(function (tile, index) {
+      return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
+    });
+    return row1;
+  },
 
-    function getRow(rowLetter) {
-      var tiles = allTiles.map(function (tile, index) {
-        if (tile.id[0] == rowLetter) {
-          return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
-        }
-      });
-      return tiles;
-    };
+  render: function render() {
+
+    var row1 = this.eachTileInRow(0, 3);
+    var row2 = this.eachTileInRow(3, 6);
+    var row3 = this.eachTileInRow(6, 9);
 
     return _react2['default'].createElement(
       'table',
@@ -20613,43 +20616,78 @@ var Gameboard = _react2['default'].createClass({
       _react2['default'].createElement(
         'tr',
         null,
-        getRow('a')
+        row1
       ),
       _react2['default'].createElement(
         'tr',
         null,
-        getRow('b')
+        row2
       ),
       _react2['default'].createElement(
         'tr',
         null,
-        getRow('c')
+        row3
       )
     );
   }
 });
 
 module.exports = Gameboard;
-//-----------------------------------------------
-//
-//
-// var tiles = this.props.tiles.map(function(tile, index) {
-//   if (index == 2){
-//     return (<Tile key={index} tile={tile} />)
-//   }
-//   else {
-//     return (<Tile key={index} tile={tile} />)
-//   }
-// });
-//
-// allTiles.filter(function(tile) {
-//   return tile.id[0] == 'a';
-// });
 
+// var row1 = allTiles.slice(0,2);
+// var row2 = allTiles.slice(3,5);
+// var row3 = allTiles.slice(6,8);
+
+/* start with something like:
+
+return(
+  <table>
+    {allTiles.map(function( tile, index ){}}
+  </table>
+)
+
+*/
+// then use something like:
+
+// Object.keys(allTiles).map(function(item){
+// item+=1;
+// return (item % 3 == 0);
+// });
+// > [false, false, true, false, false, true, false, false, true]
+
+// if true add in </tr><tr> after the tile (for the first 2 trues only)
 //
-// var row1 = row(a);
-// var row2 = row(b);
-// var row3 = row(c);
+// function getRow(rowLetter){
+//     var tiles = allTiles.map(function(tile, index) {
+//     if(tile == rowLetter){
+//       return (<Tile key={index} tile={tile} />);
+//     }
+//   })
+//   return tiles;
+// };
+//
+// var tiles = allTiles.slice(0,3).map(function(tile, index) {
+//
+//
+//   {allTiles,slie(2,3).map(function(tile, index) {
+//     var row1 = []; var row2 = []; var row3 = [];
+//
+//     if(index == 0 || index == 1 || index == 2){
+//       row1.push(<Tile key={index} tile={tile} />);
+//     }
+//     else if(index == 3 || index == 4 || index == 5){
+//       row2.push(<Tile key={index} tile={tile} />);
+//     }
+//     else if(index == 6 || index == 7 || index == 8){
+//       row3.push(<Tile key={index} tile={tile} />);
+//     }
+//
+//     return (
+//       <tr>{row1}</tr>
+//       <tr>{row2}</tr>
+//       <tr>{row3}</tr>
+//     )
+//   })}
 
 
 },{"./Tile.jsx":171,"react":161}],167:[function(require,module,exports){
@@ -20863,16 +20901,16 @@ var Tile = _react2['default'].createClass({
   render: function render() {
     var srcImg = '../img/blank.png';
 
-    if (this.props.tile.value == 'x') {
+    if (this.props.tile == 'x') {
       srcImg = '../img/X.png';
-    } else if (this.props.tile.value == 'o') {
+    } else if (this.props.tile == 'o') {
       srcImg = '../img/O.png';
     }
 
     return _react2['default'].createElement(
       'td',
       null,
-      _react2['default'].createElement('img', { id: this.props.tile.id, src: srcImg, onClick: this.handleTileClick })
+      _react2['default'].createElement('img', { src: srcImg, onClick: this.handleTileClick })
     );
   },
 
@@ -20921,7 +20959,7 @@ var _events = require('events');
 
 var CHANGE_EVENT = 'change';
 
-var _tiles = [{ id: 'a1', value: '' }, { id: 'a2', value: '' }, { id: 'a3', value: '' }, { id: 'b1', value: '' }, { id: 'b2', value: '' }, { id: 'b3', value: '' }, { id: 'c1', value: '' }, { id: 'c2', value: '' }, { id: 'c3', value: '' }];
+var _tiles = ['', '', '', '', '', '', '', '', ''];
 
 var _score = { scoreX: 0, scoreO: 0 };
 
@@ -20942,23 +20980,19 @@ function determineXorO(tile, child) {
 
     var even = isEven(_clickCounter);
 
-    if (tile.value !== '') {
-      console.log(tile.id + " is considered to already have an X or O in it.");
+    if (tile !== '') {
       _alertMessage = "I'm sorry. That spot has already been taken.";
       _clickCounter = _clickCounter - 1;
     } else if (even) {
-      tile.value = "o";
-      console.log(tile.id + " has gotten an O.");
+      tile = "o";
       _alertMessage = "";
     } else if (even == false) {
-      tile.value = "x";
-      console.log(tile.id + " has gotten an X.");
+      tile = "x";
       _alertMessage = "";
     } else {
       console.log("ERROR!");
       _clickCounter = _clickCounter - 1;
     }
-    console.log(isEven(_clickCounter) + " is the value of isEven()");
   }
 
   findWinner();
@@ -20988,30 +21022,30 @@ function isEven(_x) {
 }
 
 function findWinner() {
-  var win = [['a1', 'a2', 'a3'], ['b1', 'b2', 'b3'], ['c1', 'c2', 'c3'], ['a1', 'b1', 'c1'], ['a2', 'b2', 'c2'], ['a3', 'b3', 'c3'], ['a1', 'b2', 'c3'], ['a3', 'b2', 'c1']];
+  var win = [[_tiles[0], _tiles[1], _tiles[2]], [_tiles[3], _tiles[4], _tiles[5]], [_tiles[6], _tiles[7], _tiles[8]], [_tiles[0], _tiles[3], _tiles[6]], [_tiles[1], _tiles[4], _tiles[7]], [_tiles[2], _tiles[5], _tiles[8]], [_tiles[0], _tiles[4], _tiles[8]], [_tiles[2], _tiles[4], _tiles[6]]];
 
-  function getTileById(id) {
-    /* iterate through each tile in tiles */
-    for (var index in _tiles) {
-      var tile = _tiles[index];
-
-      if (tile.id == id) {
-        /* if this is the tile we are looking for then return it */
-        return tile;
-      }
-    }
-  }
+  // function getTileById(id) {
+  //   /* iterate through each tile in tiles */
+  //   for(var index in _tiles) {
+  //     var tile = _tiles[index];
+  //
+  //     if(tile.id == id) {
+  //       /* if this is the tile we are looking for then return it */
+  //       return tile;
+  //     }
+  //   }
+  // }
 
   for (var i in win) {
     var winIndex = win[i];
 
-    if (getTileById(winIndex[0]).value == "x" && getTileById(winIndex[1]).value == "x" && getTileById(winIndex[2]).value == "x") {
+    if (winIndex[0] == "x" && winIndex[1] == "x" && winIndex[2] == "x") {
       _winnerFound = true;
       _score.scoreX += 1;
       _alertMessage = "X wins!";
     }
 
-    if (getTileById(winIndex[0]).value == "o" && getTileById(winIndex[1]).value == "o" && getTileById(winIndex[2]).value == "o") {
+    if (winIndex[0] == "o" && winIndex[1] == "o" && winIndex[2] == "o") {
       _winnerFound = true;
       _score.scoreO += 1;
       _alertMessage = "O wins!";
@@ -21020,11 +21054,7 @@ function findWinner() {
   console.log('_winnerFound = ' + _winnerFound);
   console.log('_clickCounter = ' + _clickCounter);
   if (_clickCounter == 9 && _winnerFound == false) {
-    /* The click counter must update it's state asynchronously, because
-    my console.log click counter is always one behind the state, therefore
-    to get the no winner found message I had to change the value from 9 to 8. */
     _alertMessage = "No winner this time. Please play again.";
-    //need to show play-again button
   }
 }
 
@@ -21034,7 +21064,7 @@ function clearGame() {
   /* iterate through each tile in tiles */
   for (var index in _tiles) {
     var tile = _tiles[index];
-    tile.value = "";
+    tile = "";
   }
 }
 

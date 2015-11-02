@@ -5,17 +5,7 @@ import {EventEmitter} from 'events';
 
 var CHANGE_EVENT = 'change';
 
-var _tiles = [
-  {id: 'a1', value: ''},
-  {id: 'a2', value: ''},
-  {id: 'a3', value: ''},
-  {id: 'b1', value: ''},
-  {id: 'b2', value: ''},
-  {id: 'b3', value: ''},
-  {id: 'c1', value: ''},
-  {id: 'c2', value: ''},
-  {id: 'c3', value: ''}
-];
+var _tiles = ['','','','','','','','', ''];
 
 var _score = { scoreX: 0, scoreO: 0 };
 
@@ -36,21 +26,18 @@ function determineXorO(tile, child){
 
       var even = isEven(_clickCounter);
 
-      if(tile.value !== '') {
-        console.log(tile.id + " is considered to already have an X or O in it.")
+      if(tile !== '') {
         _alertMessage = "I'm sorry. That spot has already been taken.";
         _clickCounter = _clickCounter - 1;
       }
 
        else if(even) {
-        tile.value = "o"
-        console.log(tile.id + " has gotten an O.");
+        tile = "o"
         _alertMessage = "";
       }
 
       else if(even == false) {
-        tile.value = "x"
-        console.log(tile.id + " has gotten an X.");
+        tile = "x"
         _alertMessage = "";
       }
 
@@ -58,7 +45,6 @@ function determineXorO(tile, child){
         console.log("ERROR!");
         _clickCounter = _clickCounter - 1;
       }
-      console.log(isEven(_clickCounter) + " is the value of isEven()");
     }
 
     findWinner();
@@ -78,28 +64,28 @@ function isEven(num) {
 }
 
 function findWinner(){
-  var win = [['a1','a2','a3'],['b1','b2','b3'],['c1','c2','c3'],['a1','b1','c1'],
-  ['a2','b2','c2'],['a3','b3','c3'],['a1','b2','c3'],['a3','b2','c1']];
+  var win = [[_tiles[0],_tiles[1],_tiles[2]],[_tiles[3],_tiles[4],_tiles[5]],[_tiles[6],_tiles[7],_tiles[8]],[_tiles[0],_tiles[3],_tiles[6]],
+  [_tiles[1],_tiles[4],_tiles[7]],[_tiles[2],_tiles[5],_tiles[8]],[_tiles[0],_tiles[4],_tiles[8]],[_tiles[2],_tiles[4],_tiles[6]]];
 
-  function getTileById(id) {
-    /* iterate through each tile in tiles */
-    for(var index in _tiles) {
-      var tile = _tiles[index];
-
-      if(tile.id == id) {
-        /* if this is the tile we are looking for then return it */
-        return tile;
-      }
-    }
-  }
+  // function getTileById(id) {
+  //   /* iterate through each tile in tiles */
+  //   for(var index in _tiles) {
+  //     var tile = _tiles[index];
+  //
+  //     if(tile.id == id) {
+  //       /* if this is the tile we are looking for then return it */
+  //       return tile;
+  //     }
+  //   }
+  // }
 
   for(var i in win) {
     var winIndex = win[i];
 
     if (
-      (getTileById(winIndex[0]).value == "x")
-      && (getTileById(winIndex[1]).value == "x")
-      && (getTileById(winIndex[2]).value == "x")
+      (winIndex[0] == "x")
+      && (winIndex[1] == "x")
+      && (winIndex[2] == "x")
     ) {
       _winnerFound = true;
       _score.scoreX+=1;
@@ -107,9 +93,9 @@ function findWinner(){
     }
 
     if (
-      (getTileById(winIndex[0]).value == "o")
-      && (getTileById(winIndex[1]).value == "o")
-      && (getTileById(winIndex[2]).value == "o")
+      (winIndex[0] == "o")
+      && (winIndex[1] == "o")
+      && (winIndex[2] == "o")
     ) {
       _winnerFound = true;
       _score.scoreO+=1;
@@ -119,11 +105,7 @@ function findWinner(){
   console.log('_winnerFound = '+ _winnerFound);
   console.log('_clickCounter = '+ _clickCounter);
   if(_clickCounter == 9 && _winnerFound == false) {
-    /* The click counter must update it's state asynchronously, because
-    my console.log click counter is always one behind the state, therefore
-    to get the no winner found message I had to change the value from 9 to 8. */
     _alertMessage = "No winner this time. Please play again.";
-    //need to show play-again button
   }
 }
 
@@ -133,7 +115,7 @@ function clearGame() {
   /* iterate through each tile in tiles */
   for(var index in _tiles) {
     var tile = _tiles[index];
-    tile.value = "";
+    tile = "";
   }
 }
 
