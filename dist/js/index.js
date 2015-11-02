@@ -20596,12 +20596,23 @@ var Gameboard = _react2['default'].createClass({
   displayName: 'Gameboard',
 
   render: function render() {
-    var allTiles = this.props.tiles;
-    var tiles = [];
+    var tiles = this.props.tiles.map(function (tile, index) {
+      if (tile.id[0] == 'a') {
+        return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
+      }
+    });
 
-    for (var key in allTiles) {
-      tiles.push(_react2['default'].createElement(_TileJsx2['default'], { key: key, tile: allTiles[key] }));
-    }
+    var tiles1 = this.props.tiles.map(function (tile, index) {
+      if (tile.id[0] == 'b') {
+        return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
+      }
+    });
+
+    var tiles2 = this.props.tiles.map(function (tile, index) {
+      if (tile.id[0] == 'c') {
+        return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
+      }
+    });
 
     return _react2['default'].createElement(
       'table',
@@ -20609,29 +20620,43 @@ var Gameboard = _react2['default'].createClass({
       _react2['default'].createElement(
         'tr',
         null,
-        tiles[0],
-        tiles[1],
-        tiles[2]
+        tiles
       ),
       _react2['default'].createElement(
         'tr',
         null,
-        tiles[3],
-        tiles[4],
-        tiles[5]
+        tiles1
       ),
       _react2['default'].createElement(
         'tr',
         null,
-        tiles[6],
-        tiles[7],
-        tiles[8]
+        tiles2
       )
     );
   }
 });
 
 module.exports = Gameboard;
+//-----------------------------------------------
+//
+//
+// var tiles = this.props.tiles.map(function(tile, index) {
+//   if (index == 2){
+//     return (<Tile key={index} tile={tile} />)
+//   }
+//   else {
+//     return (<Tile key={index} tile={tile} />)
+//   }
+// });
+//
+// allTiles.filter(function(tile) {
+//   return tile.id[0] == 'a';
+// });
+
+//
+// var row1 = row(a);
+// var row2 = row(b);
+// var row3 = row(c);
 
 
 },{"./Tile.jsx":171,"react":161}],167:[function(require,module,exports){
