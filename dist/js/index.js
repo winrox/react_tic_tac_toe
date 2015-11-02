@@ -20596,23 +20596,16 @@ var Gameboard = _react2['default'].createClass({
   displayName: 'Gameboard',
 
   render: function render() {
-    var tiles = this.props.tiles.map(function (tile, index) {
-      if (tile.id[0] == 'a') {
-        return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
-      }
-    });
+    var allTiles = this.props.tiles;
 
-    var tiles1 = this.props.tiles.map(function (tile, index) {
-      if (tile.id[0] == 'b') {
-        return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
-      }
-    });
-
-    var tiles2 = this.props.tiles.map(function (tile, index) {
-      if (tile.id[0] == 'c') {
-        return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
-      }
-    });
+    function getRow(rowLetter) {
+      var tiles = allTiles.map(function (tile, index) {
+        if (tile.id[0] == rowLetter) {
+          return _react2['default'].createElement(_TileJsx2['default'], { key: index, tile: tile });
+        }
+      });
+      return tiles;
+    };
 
     return _react2['default'].createElement(
       'table',
@@ -20620,17 +20613,17 @@ var Gameboard = _react2['default'].createClass({
       _react2['default'].createElement(
         'tr',
         null,
-        tiles
+        getRow('a')
       ),
       _react2['default'].createElement(
         'tr',
         null,
-        tiles1
+        getRow('b')
       ),
       _react2['default'].createElement(
         'tr',
         null,
-        tiles2
+        getRow('c')
       )
     );
   }

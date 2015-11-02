@@ -4,29 +4,22 @@ import Tile from './Tile.jsx';
 var Gameboard = React.createClass({
 
   render: function() {
-    var tiles = this.props.tiles.map(function(tile, index) {
-      if(tile.id[0] == 'a'){
-        return (<Tile key={index} tile={tile} />);
-      }
-    });
+    var allTiles = this.props.tiles;
 
-    var tiles1 = this.props.tiles.map(function(tile, index) {
-      if(tile.id[0] == 'b'){
-        return (<Tile key={index} tile={tile} />);
-      }
-    });
-
-    var tiles2 = this.props.tiles.map(function(tile, index) {
-      if(tile.id[0] == 'c'){
-        return (<Tile key={index} tile={tile} />);
-      }
-    });
+    function getRow(rowLetter){
+        var tiles = allTiles.map(function(tile, index) {
+        if(tile.id[0] == rowLetter){
+          return (<Tile key={index} tile={tile} />);
+        }
+      })
+      return tiles;
+    };
 
     return (
       <table>
-        <tr>{tiles}</tr>
-        <tr>{tiles1}</tr>
-        <tr>{tiles2}</tr>
+        <tr>{getRow('a')}</tr>
+        <tr>{getRow('b')}</tr>
+        <tr>{getRow('c')}</tr>
       </table>
     )
   }
