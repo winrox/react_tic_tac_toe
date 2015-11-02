@@ -67,18 +67,6 @@ function findWinner(){
   var win = [[_tiles[0],_tiles[1],_tiles[2]],[_tiles[3],_tiles[4],_tiles[5]],[_tiles[6],_tiles[7],_tiles[8]],[_tiles[0],_tiles[3],_tiles[6]],
   [_tiles[1],_tiles[4],_tiles[7]],[_tiles[2],_tiles[5],_tiles[8]],[_tiles[0],_tiles[4],_tiles[8]],[_tiles[2],_tiles[4],_tiles[6]]];
 
-  // function getTileById(id) {
-  //   /* iterate through each tile in tiles */
-  //   for(var index in _tiles) {
-  //     var tile = _tiles[index];
-  //
-  //     if(tile.id == id) {
-  //       /* if this is the tile we are looking for then return it */
-  //       return tile;
-  //     }
-  //   }
-  // }
-
   for(var i in win) {
     var winIndex = win[i];
 
@@ -114,18 +102,17 @@ function findWinner(){
 function clearGame() {
   /* iterate through each tile in tiles */
   for(var index in _tiles) {
-    var tile = _tiles[index];
-    tile = "";
+    _tiles[index] = '';
   }
 }
 
 function playAgain() {
-    console.log('play again button click heard');
-    clearGame();
-    _alertMessage = "";
-    _winnerFound = false;
-    _clickCounter = 0;
-  }
+  console.log('play again button click heard');
+  clearGame();
+  _alertMessage = "";
+  _winnerFound = false;
+  _clickCounter = 0;
+}
 
 /* --------STORE BEGINS-------- */
 
