@@ -5,7 +5,7 @@ import {EventEmitter} from 'events';
 
 var CHANGE_EVENT = 'change';
 
-var _tiles = ['','','','','','','','', ''];
+var _tiles = ['','','','','','','','',''];
 
 var _score = { scoreX: 0, scoreO: 0 };
 
@@ -17,7 +17,7 @@ var _winnerFound = false;
 
 /* -----tile click functions----- */
 
-function determineXorO(tileIndex){
+function determineXorO(tileIndex) {
   _clickCounter = _clickCounter + 1;
 
     if(_winnerFound == true) {
@@ -90,8 +90,7 @@ function findWinner(){
       _alertMessage = "O wins!";
     }
   }
-  console.log('_winnerFound = '+ _winnerFound);
-  console.log('_clickCounter = '+ _clickCounter);
+
   if(_clickCounter == 9 && _winnerFound == false) {
     _alertMessage = "No winner this time. Please play again.";
   }
@@ -118,7 +117,7 @@ function playAgain() {
 
 var Store = assign({}, EventEmitter.prototype, {
 
-  getState: function() {
+  getState() {
     return({tiles: _tiles,
       score: _score,
       foundWinner: _winnerFound,
@@ -127,17 +126,17 @@ var Store = assign({}, EventEmitter.prototype, {
   },
 
   // emit change event to any view listening
-  emitChange: function() {
+  emitChange() {
     this.emit(CHANGE_EVENT);
   },
 
   // allows views to register their callback function with the store
-  addChangeListener: function(callback) {
+  addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   },
 
     // registers this function with the dispatcher to be called whenever the dispatcher emits an action
-  dispatcherIndex: Dispatcher.register(function(payload) {
+  dispatcherIndex: Dispatcher.register((payload) => {
     console.log(payload);
     var action = payload.action;
     var todoText;

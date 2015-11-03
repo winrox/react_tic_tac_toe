@@ -1,7 +1,7 @@
 import React from 'react';
 
 var Scoreboard = React.createClass({
-  render: function() {
+  render() {
   return(
     <table className="col-sm-2">
       <thead>

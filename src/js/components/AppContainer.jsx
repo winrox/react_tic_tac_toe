@@ -5,19 +5,19 @@ import Header from './Header.jsx';
 
 
 export default React.createClass({
-  getInitialState: function () {
+  getInitialState() {
     return Store.getState();
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     Store.addChangeListener(this.onChange);
   },
 
-  onChange: function() {
+  onChange() {
     this.setState( Store.getState());
   },
 
-  render: function() {
+  render() {
     return (
       <div>
         <Header
@@ -26,7 +26,7 @@ export default React.createClass({
           score={this.state.score}
           clickCounter={this.state.clickCounter}
         />
-        <br /> <br /> <br />
+        <br/> <br/> <br/>
         <Gameboard tiles={this.state.tiles} />
       </div>
     );

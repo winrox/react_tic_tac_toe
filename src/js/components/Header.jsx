@@ -4,7 +4,7 @@ import Scoreboard from './Scoreboard.jsx';
 import PlayAgain from './PlayAgain.jsx';
 
 var Header = React.createClass({
-  render: function() {
+  render() {
     return(
       <div className="page-header">
         <Scoreboard score={this.props.score} />

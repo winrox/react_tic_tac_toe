@@ -1,7 +1,7 @@
 import React from 'react';
 
 var Message = React.createClass({
-  render: function() {
+  render() {
     return (
       <div className="center-text">
         <h2 className="alert-message">

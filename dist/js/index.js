@@ -20993,8 +20993,7 @@ function findWinner() {
       _alertMessage = "O wins!";
     }
   }
-  console.log('_winnerFound = ' + _winnerFound);
-  console.log('_clickCounter = ' + _clickCounter);
+
   if (_clickCounter == 9 && _winnerFound == false) {
     _alertMessage = "No winner this time. Please play again.";
   }

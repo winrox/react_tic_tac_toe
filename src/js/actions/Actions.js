@@ -6,11 +6,11 @@ function Dispatch(actionType, data){
 }
 
 var Actions = {
-  changeTile: function(tileIndex) {
+  changeTile(tileIndex) {
     Dispatch(Constants.CHANGE_TILE, tileIndex);
   },
 
-  playAgainClick: function() {
+  playAgainClick() {
     Dispatch(Constants.PLAY_AGAIN);
   }
 }

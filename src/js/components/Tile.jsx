@@ -2,7 +2,7 @@ import React from 'react';
 import Actions from '../actions/Actions.js';
 
 var Tile = React.createClass({
-  render: function() {
+  render() {
     var srcImg = '../img/blank.png';
 
     if(this.props.tile == 'x') {
@@ -19,7 +19,7 @@ var Tile = React.createClass({
     );
   },
 
-  handleTileClick: function() {
+  handleTileClick() {
     Actions.changeTile(this.props.index);
   }
 });

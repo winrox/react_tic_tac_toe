@@ -3,7 +3,7 @@ import Constants from './Constants';
 import Assign from 'object-assign';
 
 var AppDispatcher = Assign(new Dispatcher(), {
-  handleViewAction: function(action) {
+  handleViewAction(action) {
     this.dispatch({
       source: 'VIEW_ACTION',
       action: action
