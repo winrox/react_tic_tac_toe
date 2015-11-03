@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom'; /* I get warnings in console about needing this, not sure how to use it */
 import Gameboard from './Gameboard.jsx';
 import Store from '../stores/Store.js';
 import Header from './Header.jsx';
