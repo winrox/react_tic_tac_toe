@@ -5,7 +5,7 @@ function Dispatch(actionType, data){
   Dispatcher.handleViewAction({actionType: actionType, data: data})
 }
 
-var Actions = {
+const Actions = {
   changeTile(tileIndex) {
     Dispatch(Constants.CHANGE_TILE, tileIndex);
   },

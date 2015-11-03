@@ -3,9 +3,9 @@ import assign from 'object-assign';
 import Constants from '../Constants';
 import {EventEmitter} from 'events';
 
-var CHANGE_EVENT = 'change';
+const CHANGE_EVENT = 'change';
 
-var _tiles = ['','','','','','','','',''];
+let _tiles = ['','','','','','','','',''];
 
 let _score = { scoreX: 0, scoreO: 0 };
 
@@ -64,11 +64,11 @@ function isEven(num) {
 }
 
 function findWinner(){
-  var win = [[_tiles[0],_tiles[1],_tiles[2]],[_tiles[3],_tiles[4],_tiles[5]],[_tiles[6],_tiles[7],_tiles[8]],[_tiles[0],_tiles[3],_tiles[6]],
+  const win = [[_tiles[0],_tiles[1],_tiles[2]],[_tiles[3],_tiles[4],_tiles[5]],[_tiles[6],_tiles[7],_tiles[8]],[_tiles[0],_tiles[3],_tiles[6]],
   [_tiles[1],_tiles[4],_tiles[7]],[_tiles[2],_tiles[5],_tiles[8]],[_tiles[0],_tiles[4],_tiles[8]],[_tiles[2],_tiles[4],_tiles[6]]];
 
   for(let i in win) {
-    var winIndex = win[i];
+    const winIndex = win[i];
 
     if (
       (winIndex[0] == "x")
@@ -106,7 +106,6 @@ function clearGame() {
 }
 
 function playAgain() {
-  console.log('play again button click heard');
   clearGame();
   _alertMessage = "";
   _winnerFound = false;
@@ -115,7 +114,7 @@ function playAgain() {
 
 /* --------STORE BEGINS-------- */
 
-var Store = assign({}, EventEmitter.prototype, {
+const Store = assign({}, EventEmitter.prototype, {
 
   getState() {
     return({tiles: _tiles,
@@ -150,7 +149,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
         case Constants.PLAY_AGAIN:
           playAgain();
-          this.emitChange();
+          Store.emitChange();
           break;
       // add more cases for other action types
       return true; //No errors. Needed by promise in dispatcher.

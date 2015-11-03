@@ -2,7 +2,7 @@ import {Dispatcher} from 'flux';
 import Constants from './Constants';
 import Assign from 'object-assign';
 
-var AppDispatcher = Assign(new Dispatcher(), {
+const AppDispatcher = Assign(new Dispatcher(), {
   handleViewAction(action) {
     this.dispatch({
       source: 'VIEW_ACTION',

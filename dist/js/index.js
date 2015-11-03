@@ -21201,7 +21201,6 @@ function clearGame() {
 }
 
 function playAgain() {
-  console.log('play again button click heard');
   clearGame();
   _alertMessage = "";
   _winnerFound = false;
@@ -21245,7 +21244,7 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
 
       case _Constants2['default'].PLAY_AGAIN:
         playAgain();
-        undefined.emitChange();
+        Store.emitChange();
         break;
         // add more cases for other action types
         return true; //No errors. Needed by promise in dispatcher.
