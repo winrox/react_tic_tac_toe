@@ -20524,7 +20524,15 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
@@ -20542,47 +20550,75 @@ var _HeaderJsx = require('./Header.jsx');
 
 var _HeaderJsx2 = _interopRequireDefault(_HeaderJsx);
 
-exports['default'] = _react2['default'].createClass({
-  displayName: 'AppContainer',
+var Component = _react2['default'].Component;
 
-  getInitialState: function getInitialState() {
-    return _storesStoreJs2['default'].getState();
-  },
+var AppContainer = (function (_Component) {
+  _inherits(AppContainer, _Component);
 
-  componentDidMount: function componentDidMount() {
-    _storesStoreJs2['default'].addChangeListener(this.onChange);
-  },
+  function AppContainer() {
+    _classCallCheck(this, AppContainer);
 
-  onChange: function onChange() {
-    this.setState(_storesStoreJs2['default'].getState());
-  },
-
-  render: function render() {
-    return _react2['default'].createElement(
-      'div',
-      null,
-      _react2['default'].createElement(_HeaderJsx2['default'], {
-        message: this.state.message,
-        foundWinner: this.state.foundWinner,
-        score: this.state.score,
-        clickCounter: this.state.clickCounter
-      }),
-      _react2['default'].createElement('br', null),
-      ' ',
-      _react2['default'].createElement('br', null),
-      ' ',
-      _react2['default'].createElement('br', null),
-      _react2['default'].createElement(_GameboardJsx2['default'], { tiles: this.state.tiles })
-    );
+    _get(Object.getPrototypeOf(AppContainer.prototype), 'constructor', this).call(this);
+    this.state = _storesStoreJs2['default'].getState();
+    this.onChange = this.onChange.bind(this);
   }
-});
+
+  _createClass(AppContainer, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      _storesStoreJs2['default'].addChangeListener(this.onChange);
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange() {
+      this.setState(_storesStoreJs2['default'].getState());
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        null,
+        _react2['default'].createElement(_HeaderJsx2['default'], {
+          message: this.state.message,
+          foundWinner: this.state.foundWinner,
+          score: this.state.score,
+          clickCounter: this.state.clickCounter
+        }),
+        _react2['default'].createElement('br', null),
+        ' ',
+        _react2['default'].createElement('br', null),
+        ' ',
+        _react2['default'].createElement('br', null),
+        _react2['default'].createElement(_GameboardJsx2['default'], { tiles: this.state.tiles })
+      );
+    }
+  }]);
+
+  return AppContainer;
+})(Component);
+
+exports['default'] = AppContainer;
+;
 module.exports = exports['default'];
 
 
 },{"../stores/Store.js":173,"./Gameboard.jsx":166,"./Header.jsx":167,"react":161}],166:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
@@ -20592,62 +20628,89 @@ var _TileJsx = require('./Tile.jsx');
 
 var _TileJsx2 = _interopRequireDefault(_TileJsx);
 
-var Gameboard = _react2['default'].createClass({
-  displayName: 'Gameboard',
+var Component = _react2['default'].Component;
 
-  eachTileInRow: function eachTileInRow(sliceStart, sliceEnd) {
-    var allTiles = this.props.tiles;
-    var row = [];
+var Gameboard = (function (_Component) {
+  _inherits(Gameboard, _Component);
 
-    row = allTiles.slice(sliceStart, sliceEnd).map(function (tile, index) {
-      var realIndex = index;
-      if (sliceStart == 3) {
-        realIndex += 3;
-      }
-      if (sliceStart == 6) {
-        realIndex += 6;
-      }
-      return _react2['default'].createElement(_TileJsx2['default'], { tile: tile, index: realIndex });
-    });
+  function Gameboard() {
+    _classCallCheck(this, Gameboard);
 
-    return row;
-  },
-
-  render: function render() {
-
-    var row1 = this.eachTileInRow(0, 3);
-    var row2 = this.eachTileInRow(3, 6);
-    var row3 = this.eachTileInRow(6, 9);
-
-    return _react2['default'].createElement(
-      'table',
-      null,
-      _react2['default'].createElement(
-        'tr',
-        null,
-        row1
-      ),
-      _react2['default'].createElement(
-        'tr',
-        null,
-        row2
-      ),
-      _react2['default'].createElement(
-        'tr',
-        null,
-        row3
-      )
-    );
+    _get(Object.getPrototypeOf(Gameboard.prototype), 'constructor', this).apply(this, arguments);
   }
-});
 
-module.exports = Gameboard;
+  _createClass(Gameboard, [{
+    key: 'eachTileInRow',
+    value: function eachTileInRow(sliceStart, sliceEnd) {
+      var allTiles = this.props.tiles;
+      var row = [];
+
+      row = allTiles.slice(sliceStart, sliceEnd).map(function (tile, index) {
+        var realIndex = index;
+        if (sliceStart == 3) {
+          realIndex += 3;
+        }
+        if (sliceStart == 6) {
+          realIndex += 6;
+        }
+        return _react2['default'].createElement(_TileJsx2['default'], { tile: tile, index: realIndex });
+      });
+
+      return row;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var row1 = this.eachTileInRow(0, 3);
+      var row2 = this.eachTileInRow(3, 6);
+      var row3 = this.eachTileInRow(6, 9);
+
+      return _react2['default'].createElement(
+        'table',
+        null,
+        _react2['default'].createElement(
+          'tr',
+          null,
+          row1
+        ),
+        _react2['default'].createElement(
+          'tr',
+          null,
+          row2
+        ),
+        _react2['default'].createElement(
+          'tr',
+          null,
+          row3
+        )
+      );
+    }
+  }]);
+
+  return Gameboard;
+})(Component);
+
+exports['default'] = Gameboard;
+;
+module.exports = exports['default'];
 
 
 },{"./Tile.jsx":171,"react":161}],167:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
@@ -20665,53 +20728,109 @@ var _PlayAgainJsx = require('./PlayAgain.jsx');
 
 var _PlayAgainJsx2 = _interopRequireDefault(_PlayAgainJsx);
 
-var Header = _react2['default'].createClass({
-  displayName: 'Header',
+var Component = _react2['default'].Component;
 
-  render: function render() {
-    return _react2['default'].createElement(
-      'div',
-      { className: 'page-header' },
-      _react2['default'].createElement(_ScoreboardJsx2['default'], { score: this.props.score }),
-      _react2['default'].createElement(_PlayAgainJsx2['default'], { clickCounter: this.props.clickCounter, foundWinner: this.props.foundWinner }),
-      _react2['default'].createElement(_MessageJsx2['default'], { message: this.props.message })
-    );
+var Header = (function (_Component) {
+  _inherits(Header, _Component);
+
+  function Header() {
+    _classCallCheck(this, Header);
+
+    _get(Object.getPrototypeOf(Header.prototype), 'constructor', this).apply(this, arguments);
   }
-});
-module.exports = Header;
+
+  _createClass(Header, [{
+    key: 'render',
+    value: function render() {
+      return _react2['default'].createElement(
+        'div',
+        { className: 'page-header' },
+        _react2['default'].createElement(_ScoreboardJsx2['default'], { score: this.props.score }),
+        _react2['default'].createElement(_PlayAgainJsx2['default'], { clickCounter: this.props.clickCounter, foundWinner: this.props.foundWinner }),
+        _react2['default'].createElement(_MessageJsx2['default'], { message: this.props.message })
+      );
+    }
+  }]);
+
+  return Header;
+})(Component);
+
+exports['default'] = Header;
+;
+module.exports = exports['default'];
 
 
 },{"./Message.jsx":168,"./PlayAgain.jsx":169,"./Scoreboard.jsx":170,"react":161}],168:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var Message = _react2["default"].createClass({
-  displayName: "Message",
+var Component = _react2["default"].Component;
 
-  render: function render() {
-    return _react2["default"].createElement(
-      "div",
-      { className: "center-text" },
-      _react2["default"].createElement(
-        "h2",
-        { className: "alert-message" },
-        this.props.message
-      )
-    );
+var Message = (function (_Component) {
+  _inherits(Message, _Component);
+
+  function Message() {
+    _classCallCheck(this, Message);
+
+    _get(Object.getPrototypeOf(Message.prototype), "constructor", this).apply(this, arguments);
   }
-});
-module.exports = Message;
+
+  _createClass(Message, [{
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement(
+        "div",
+        { className: "center-text" },
+        _react2["default"].createElement(
+          "h2",
+          { className: "alert-message" },
+          this.props.message
+        )
+      );
+    }
+  }]);
+
+  return Message;
+})(Component);
+
+exports["default"] = Message;
+;
+module.exports = exports["default"];
 
 
 },{"react":161}],169:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
@@ -20725,121 +20844,177 @@ var _HeaderJsx = require('./Header.jsx');
 
 var _HeaderJsx2 = _interopRequireDefault(_HeaderJsx);
 
-var PlayAgain = _react2['default'].createClass({
-  displayName: 'PlayAgain',
+var Component = _react2['default'].Component;
 
-  render: function render() {
-    var playAgainBtn = _react2['default'].createElement('p', null);
+var PlayAgain = (function (_Component) {
+  _inherits(PlayAgain, _Component);
 
-    if (this.props.foundWinner == true || this.props.clickCounter == 9) {
-      playAgainBtn = _react2['default'].createElement(
-        'button',
-        { onClick: this.handleClick },
-        'Play Again'
-      );
-    } else if (this.props.clickCounter > 0) {
-      playAgainBtn = _react2['default'].createElement('p', null);
-    }
+  function PlayAgain() {
+    _classCallCheck(this, PlayAgain);
 
-    return _react2['default'].createElement(
-      'div',
-      null,
-      playAgainBtn
-    );
-  },
-
-  handleClick: function handleClick() {
-    _actionsActions2['default'].playAgainClick();
+    _get(Object.getPrototypeOf(PlayAgain.prototype), 'constructor', this).call(this);
+    this.handleClick = this.handleClick.bind(this);
   }
-});
 
-module.exports = PlayAgain;
+  _createClass(PlayAgain, [{
+    key: 'render',
+    value: function render() {
+      var playAgainBtn = _react2['default'].createElement('p', null);
+
+      if (this.props.foundWinner == true || this.props.clickCounter == 9) {
+        playAgainBtn = _react2['default'].createElement(
+          'button',
+          { onClick: this.handleClick },
+          'Play Again'
+        );
+      } else if (this.props.clickCounter > 0) {
+        playAgainBtn = _react2['default'].createElement('p', null);
+      }
+
+      return _react2['default'].createElement(
+        'div',
+        null,
+        playAgainBtn
+      );
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick() {
+      _actionsActions2['default'].playAgainClick();
+    }
+  }]);
+
+  return PlayAgain;
+})(Component);
+
+exports['default'] = PlayAgain;
+;
+module.exports = exports['default'];
 
 
 },{"../actions/Actions":164,"./Header.jsx":167,"react":161}],170:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var Scoreboard = _react2["default"].createClass({
-  displayName: "Scoreboard",
+var Component = _react2["default"].Component;
 
-  render: function render() {
-    return _react2["default"].createElement(
-      "table",
-      { className: "col-sm-2" },
-      _react2["default"].createElement(
-        "thead",
-        null,
+var Scoreboard = (function (_Component) {
+  _inherits(Scoreboard, _Component);
+
+  function Scoreboard() {
+    _classCallCheck(this, Scoreboard);
+
+    _get(Object.getPrototypeOf(Scoreboard.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(Scoreboard, [{
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement(
+        "table",
+        { className: "col-sm-2" },
+        _react2["default"].createElement(
+          "thead",
+          null,
+          _react2["default"].createElement(
+            "tr",
+            null,
+            _react2["default"].createElement(
+              "td",
+              { colSpan: "2" },
+              "scoreboard"
+            )
+          )
+        ),
         _react2["default"].createElement(
           "tr",
           null,
           _react2["default"].createElement(
             "td",
-            { colSpan: "2" },
-            "scoreboard"
-          )
-        )
-      ),
-      _react2["default"].createElement(
-        "tr",
-        null,
-        _react2["default"].createElement(
-          "td",
-          null,
-          _react2["default"].createElement(
-            "strong",
             null,
-            "X"
+            _react2["default"].createElement(
+              "strong",
+              null,
+              "X"
+            )
+          ),
+          _react2["default"].createElement(
+            "td",
+            null,
+            _react2["default"].createElement(
+              "strong",
+              null,
+              "O"
+            )
           )
         ),
         _react2["default"].createElement(
-          "td",
+          "tr",
           null,
           _react2["default"].createElement(
-            "strong",
+            "td",
             null,
-            "O"
+            _react2["default"].createElement(
+              "p",
+              { id: "x-score" },
+              this.props.score.scoreX
+            )
+          ),
+          _react2["default"].createElement(
+            "td",
+            null,
+            _react2["default"].createElement(
+              "p",
+              { id: "o-score" },
+              this.props.score.scoreO
+            )
           )
         )
-      ),
-      _react2["default"].createElement(
-        "tr",
-        null,
-        _react2["default"].createElement(
-          "td",
-          null,
-          _react2["default"].createElement(
-            "p",
-            { id: "x-score" },
-            this.props.score.scoreX
-          )
-        ),
-        _react2["default"].createElement(
-          "td",
-          null,
-          _react2["default"].createElement(
-            "p",
-            { id: "o-score" },
-            this.props.score.scoreO
-          )
-        )
-      )
-    );
-  }
-});
+      );
+    }
+  }]);
 
-module.exports = Scoreboard;
+  return Scoreboard;
+})(Component);
+
+exports["default"] = Scoreboard;
+;
+module.exports = exports["default"];
 
 
 },{"react":161}],171:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _react = require('react');
 
@@ -20849,31 +21024,48 @@ var _actionsActionsJs = require('../actions/Actions.js');
 
 var _actionsActionsJs2 = _interopRequireDefault(_actionsActionsJs);
 
-var Tile = _react2['default'].createClass({
-  displayName: 'Tile',
+var Component = _react2['default'].Component;
 
-  render: function render() {
-    var srcImg = '../img/blank.png';
+var Tile = (function (_Component) {
+  _inherits(Tile, _Component);
 
-    if (this.props.tile == 'x') {
-      srcImg = '../img/X.png';
-    } else if (this.props.tile == 'o') {
-      srcImg = '../img/O.png';
-    }
+  function Tile() {
+    _classCallCheck(this, Tile);
 
-    return _react2['default'].createElement(
-      'td',
-      null,
-      _react2['default'].createElement('img', { index: this.props.index, src: srcImg, onClick: this.handleTileClick })
-    );
-  },
-
-  handleTileClick: function handleTileClick() {
-    _actionsActionsJs2['default'].changeTile(this.props.index);
+    _get(Object.getPrototypeOf(Tile.prototype), 'constructor', this).call(this);
+    this.handleTileClick = this.handleTileClick.bind(this);
   }
-});
 
-module.exports = Tile;
+  _createClass(Tile, [{
+    key: 'render',
+    value: function render() {
+      var srcImg = '../img/blank.png';
+
+      if (this.props.tile == 'x') {
+        srcImg = '../img/X.png';
+      } else if (this.props.tile == 'o') {
+        srcImg = '../img/O.png';
+      }
+
+      return _react2['default'].createElement(
+        'td',
+        null,
+        _react2['default'].createElement('img', { index: this.props.index, src: srcImg, onClick: this.handleTileClick })
+      );
+    }
+  }, {
+    key: 'handleTileClick',
+    value: function handleTileClick() {
+      _actionsActionsJs2['default'].changeTile(this.props.index);
+    }
+  }]);
+
+  return Tile;
+})(Component);
+
+exports['default'] = Tile;
+;
+module.exports = exports['default'];
 
 
 },{"../actions/Actions.js":164,"react":161}],172:[function(require,module,exports){
@@ -21053,7 +21245,7 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
 
       case _Constants2['default'].PLAY_AGAIN:
         playAgain();
-        Store.emitChange();
+        undefined.emitChange();
         break;
         // add more cases for other action types
         return true; //No errors. Needed by promise in dispatcher.

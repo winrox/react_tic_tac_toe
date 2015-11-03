@@ -5,7 +5,7 @@ import {EventEmitter} from 'events';
 
 var CHANGE_EVENT = 'change';
 
-let _tiles = ['','','','','','','','',''];
+var _tiles = ['','','','','','','','',''];
 
 let _score = { scoreX: 0, scoreO: 0 };
 
@@ -32,12 +32,12 @@ function determineXorO(tileIndex) {
       }
 
        else if(even) {
-        _tiles[tileIndex] = 'o'
+        _tiles[tileIndex] = 'o';
         _alertMessage = "";
       }
 
       else if(even == false) {
-        _tiles[tileIndex] = 'x'
+        _tiles[tileIndex] = 'x';
         _alertMessage = "";
       }
 
@@ -150,7 +150,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
         case Constants.PLAY_AGAIN:
           playAgain();
-          Store.emitChange();
+          this.emitChange();
           break;
       // add more cases for other action types
       return true; //No errors. Needed by promise in dispatcher.

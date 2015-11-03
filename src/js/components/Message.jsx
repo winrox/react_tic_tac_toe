@@ -1,6 +1,7 @@
 import React from 'react';
+let {Component} = React;
 
-var Message = React.createClass({
+export default class Message extends Component{
   render() {
     return (
       <div className="center-text">
@@ -10,5 +11,4 @@ var Message = React.createClass({
       </div>
     );
   }
-});
-module.exports = Message;
+};

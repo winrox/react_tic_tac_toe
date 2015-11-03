@@ -2,8 +2,9 @@ import React from 'react';
 import Message from './Message.jsx';
 import Scoreboard from './Scoreboard.jsx';
 import PlayAgain from './PlayAgain.jsx';
+let {Component} = React;
 
-var Header = React.createClass({
+export default class Header extends Component{
   render() {
     return(
       <div className="page-header">
@@ -13,5 +14,4 @@ var Header = React.createClass({
       </div>
     )
   }
-});
-module.exports = Header;
+};

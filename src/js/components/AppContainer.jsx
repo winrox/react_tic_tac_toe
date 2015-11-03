@@ -2,20 +2,22 @@ import React from 'react';
 import Gameboard from './Gameboard.jsx';
 import Store from '../stores/Store.js';
 import Header from './Header.jsx';
+let {Component} = React;
 
-
-export default React.createClass({
-  getInitialState() {
-    return Store.getState();
-  },
+export default class AppContainer extends Component{
+  constructor() {
+    super();
+    this.state = Store.getState();
+    this.onChange = this.onChange.bind(this);
+  }
 
   componentDidMount() {
     Store.addChangeListener(this.onChange);
-  },
+  }
 
   onChange() {
-    this.setState( Store.getState());
-  },
+    this.setState(Store.getState());
+  }
 
   render() {
     return (
@@ -31,4 +33,4 @@ export default React.createClass({
       </div>
     );
   }
-});
+};

@@ -1,8 +1,14 @@
 import React from 'react';
 import Actions from '../actions/Actions';
 import Header from './Header.jsx';
+let {Component} = React;
 
-var PlayAgain = React.createClass({
+export default class PlayAgain extends Component{
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this);
+   }
+
   render() {
     let playAgainBtn = <p></p>
 
@@ -20,11 +26,9 @@ var PlayAgain = React.createClass({
         {playAgainBtn}
       </div>
     )
-  },
+  }
 
   handleClick() {
     Actions.playAgainClick();
   }
-});
-
-module.exports = PlayAgain;
+};
