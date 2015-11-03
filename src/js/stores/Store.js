@@ -5,15 +5,15 @@ import {EventEmitter} from 'events';
 
 var CHANGE_EVENT = 'change';
 
-var _tiles = ['','','','','','','','',''];
+let _tiles = ['','','','','','','','',''];
 
-var _score = { scoreX: 0, scoreO: 0 };
+let _score = { scoreX: 0, scoreO: 0 };
 
-var _alertMessage = '';
+let _alertMessage = '';
 
-var _clickCounter = 0;
+let _clickCounter = 0;
 
-var _winnerFound = false;
+let _winnerFound = false;
 
 /* -----tile click functions----- */
 
@@ -24,7 +24,7 @@ function determineXorO(tileIndex) {
       return;
     } else {
 
-      var even = isEven(_clickCounter);
+      const even = isEven(_clickCounter);
 
       if(_tiles[tileIndex] !== '') {
         _alertMessage = "I'm sorry. That spot has already been taken.";
@@ -67,7 +67,7 @@ function findWinner(){
   var win = [[_tiles[0],_tiles[1],_tiles[2]],[_tiles[3],_tiles[4],_tiles[5]],[_tiles[6],_tiles[7],_tiles[8]],[_tiles[0],_tiles[3],_tiles[6]],
   [_tiles[1],_tiles[4],_tiles[7]],[_tiles[2],_tiles[5],_tiles[8]],[_tiles[0],_tiles[4],_tiles[8]],[_tiles[2],_tiles[4],_tiles[6]]];
 
-  for(var i in win) {
+  for(let i in win) {
     var winIndex = win[i];
 
     if (
@@ -100,7 +100,7 @@ function findWinner(){
 
 function clearGame() {
   /* iterate through each tile in tiles */
-  for(var index in _tiles) {
+  for(let index in _tiles) {
     _tiles[index] = '';
   }
 }
@@ -138,13 +138,12 @@ var Store = assign({}, EventEmitter.prototype, {
     // registers this function with the dispatcher to be called whenever the dispatcher emits an action
   dispatcherIndex: Dispatcher.register((payload) => {
     console.log(payload);
-    var action = payload.action;
-    var todoText;
+    const action = payload.action;
 
     // switch statement looks for a matching action case
     switch(action.actionType) {
       case Constants.CHANGE_TILE:
-        var tileIndex = action.data;
+        const tileIndex = action.data;
         determineXorO(tileIndex);
         Store.emitChange(); // tell the view the store has changed
         break;

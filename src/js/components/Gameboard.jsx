@@ -3,11 +3,11 @@ import Tile from './Tile.jsx';
 
 var Gameboard = React.createClass({
   eachTileInRow(sliceStart, sliceEnd) {
-    var allTiles = this.props.tiles;
-    var row = [];
+    const allTiles = this.props.tiles;
+    let row = [];
 
     row = allTiles.slice(sliceStart, sliceEnd).map((tile, index) => {
-      var realIndex = index;
+      let realIndex = index;
       if(sliceStart == 3){
         realIndex+= 3;
       }
@@ -22,9 +22,9 @@ var Gameboard = React.createClass({
 
   render() {
 
-    var row1 = this.eachTileInRow(0,3);
-    var row2 = this.eachTileInRow(3,6);
-    var row3 = this.eachTileInRow(6,9);
+    const row1 = this.eachTileInRow(0,3);
+    const row2 = this.eachTileInRow(3,6);
+    const row3 = this.eachTileInRow(6,9);
 
     return (
       <table>

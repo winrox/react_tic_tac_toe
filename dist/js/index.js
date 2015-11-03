@@ -21042,7 +21042,6 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
   dispatcherIndex: _DispatcherJs2['default'].register(function (payload) {
     console.log(payload);
     var action = payload.action;
-    var todoText;
 
     // switch statement looks for a matching action case
     switch (action.actionType) {

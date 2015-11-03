@@ -4,7 +4,7 @@ import Header from './Header.jsx';
 
 var PlayAgain = React.createClass({
   render() {
-    var playAgainBtn = <p></p>
+    let playAgainBtn = <p></p>
 
     if (this.props.foundWinner == true || this.props.clickCounter == 9) {
       playAgainBtn = <button onClick={this.handleClick}>

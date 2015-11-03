@@ -3,7 +3,7 @@ import Actions from '../actions/Actions.js';
 
 var Tile = React.createClass({
   render() {
-    var srcImg = '../img/blank.png';
+    let srcImg = '../img/blank.png';
 
     if(this.props.tile == 'x') {
       srcImg = '../img/X.png'
