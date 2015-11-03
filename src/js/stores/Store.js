@@ -64,23 +64,31 @@ function isEven(num) {
 }
 
 function findWinner(){
-  const win = [[_tiles[0],_tiles[1],_tiles[2]],[_tiles[3],_tiles[4],_tiles[5]],[_tiles[6],_tiles[7],_tiles[8]],[_tiles[0],_tiles[3],_tiles[6]],
-  [_tiles[1],_tiles[4],_tiles[7]],[_tiles[2],_tiles[5],_tiles[8]],[_tiles[0],_tiles[4],_tiles[8]],[_tiles[2],_tiles[4],_tiles[6]]];
+  const win = [
+  [_tiles[0],_tiles[1],_tiles[2]],
+  [_tiles[3],_tiles[4],_tiles[5]],
+  [_tiles[6],_tiles[7],_tiles[8]],
+  [_tiles[0],_tiles[3],_tiles[6]],
+  [_tiles[1],_tiles[4],_tiles[7]],
+  [_tiles[2],_tiles[5],_tiles[8]],
+  [_tiles[0],_tiles[4],_tiles[8]],
+  [_tiles[2],_tiles[4],_tiles[6]]
+];
 
   for(let i in win) {
     const winIndex = win[i];
 
-    function shortenIf(indexOfWinState, xo) {
+    function dryIf(indexOfWinState, xo) {
       return (winIndex[indexOfWinState] == xo);
     }
 
-    if (shortenIf(0,'x') && shortenIf(1,'x') && shortenIf(2,'x')) {
+    if (dryIf(0,'x') && dryIf(1,'x') && dryIf(2,'x')) {
       _winnerFound = true;
       _score.scoreX+=1;
       _alertMessage = "X wins!";
     }
 
-    if (shortenIf(0,'o') && shortenIf(1,'o') && shortenIf(2,'o')) {
+    if (dryIf(0,'o') && dryIf(1,'o') && dryIf(2,'o')) {
       _winnerFound = true;
       _score.scoreO+=1;
       _alertMessage = "O wins!";
