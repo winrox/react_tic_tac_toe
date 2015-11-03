@@ -1,8 +1,7 @@
 import React from 'react';
 import Actions from '../actions/Actions.js';
-let {Component} = React;
 
-export default class Tile extends Component{
+export default class Tile extends React.Component{
   constructor() {
     super();
     this.handleTileClick = this.handleTileClick.bind(this);

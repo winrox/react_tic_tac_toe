@@ -1,8 +1,7 @@
 import React from 'react';
 import Tile from './Tile.jsx';
-let {Component} = React;
 
-export default class Gameboard extends Component{
+export default class Gameboard extends React.Component{
   eachTileInRow(sliceStart, sliceEnd) {
     const allTiles = this.props.tiles;
     let row = [];
@@ -15,7 +14,7 @@ export default class Gameboard extends Component{
       if(sliceStart == 6){
         realIndex+= 6;
       }
-      return (<Tile tile={tile} index={realIndex}/>);
+      return (<Tile key={realIndex} tile={tile} index={realIndex}/>);
     })
 
     return row;
@@ -28,9 +27,11 @@ export default class Gameboard extends Component{
 
     return (
       <table>
-        <tr>{row1}</tr>
-        <tr>{row2}</tr>
-        <tr>{row3}</tr>
+        <tbody>
+          <tr>{row1}</tr>
+          <tr>{row2}</tr>
+          <tr>{row3}</tr>
+        </tbody>
       </table>
     )
   }

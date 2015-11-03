@@ -1,9 +1,8 @@
 import React from 'react';
 import Actions from '../actions/Actions';
 import Header from './Header.jsx';
-let {Component} = React;
 
-export default class PlayAgain extends Component{
+export default class PlayAgain extends React.Component{
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);

@@ -2,9 +2,8 @@ import React from 'react';
 import Message from './Message.jsx';
 import Scoreboard from './Scoreboard.jsx';
 import PlayAgain from './PlayAgain.jsx';
-let {Component} = React;
 
-export default class Header extends Component{
+export default class Header extends React.Component{
   render() {
     return(
       <div className="page-header">
