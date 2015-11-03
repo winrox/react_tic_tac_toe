@@ -70,21 +70,17 @@ function findWinner(){
   for(let i in win) {
     const winIndex = win[i];
 
-    if (
-      (winIndex[0] == "x")
-      && (winIndex[1] == "x")
-      && (winIndex[2] == "x")
-    ) {
+    function shortenIf(indexOfWinState, xo) {
+      return (winIndex[indexOfWinState] == xo);
+    }
+
+    if (shortenIf(0,'x') && shortenIf(1,'x') && shortenIf(2,'x')) {
       _winnerFound = true;
       _score.scoreX+=1;
       _alertMessage = "X wins!";
     }
 
-    if (
-      (winIndex[0] == "o")
-      && (winIndex[1] == "o")
-      && (winIndex[2] == "o")
-    ) {
+    if (shortenIf(0,'o') && shortenIf(1,'o') && shortenIf(2,'o')) {
       _winnerFound = true;
       _score.scoreO+=1;
       _alertMessage = "O wins!";
@@ -117,11 +113,13 @@ function playAgain() {
 const Store = assign({}, EventEmitter.prototype, {
 
   getState() {
-    return({tiles: _tiles,
+    return({
+      tiles: _tiles,
       score: _score,
       foundWinner: _winnerFound,
       clickCounter: _clickCounter,
-      message: _alertMessage});
+      message: _alertMessage
+    });
   },
 
   // emit change event to any view listening

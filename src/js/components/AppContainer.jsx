@@ -20,16 +20,19 @@ export default class AppContainer extends Component{
   }
 
   render() {
+    const props = {
+      message: this.state.message,
+      foundWinner: this.state.foundWinner,
+      score: this.state.score,
+      clickCounter: this.state.clickCounter,
+      tiles: this.state.tiles
+    };
+
     return (
       <div>
-        <Header
-          message={this.state.message}
-          foundWinner={this.state.foundWinner}
-          score={this.state.score}
-          clickCounter={this.state.clickCounter}
-        />
+        <Header {...props} />
         <br/> <br/> <br/>
-        <Gameboard tiles={this.state.tiles} />
+        <Gameboard tiles={props.tiles} />
       </div>
     );
   }

@@ -10,21 +10,18 @@ export default class PlayAgain extends Component{
    }
 
   render() {
-    let playAgainBtn = <p></p>
+    let hide;
 
     if (this.props.foundWinner == true || this.props.clickCounter == 9) {
-      playAgainBtn = <button onClick={this.handleClick}>
+      hide = "";
+    } else {
+      hide = "hidden";
+    }
+
+    return (
+      <button className={hide} onClick={this.handleClick}>
         Play Again
       </button>
-    }
-    else if(this.props.clickCounter > 0){
-      playAgainBtn = <p></p>
-    }
-
-
-    return (<div>
-        {playAgainBtn}
-      </div>
     )
   }
 

@@ -20576,21 +20576,24 @@ var AppContainer = (function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var props = {
+        message: this.state.message,
+        foundWinner: this.state.foundWinner,
+        score: this.state.score,
+        clickCounter: this.state.clickCounter,
+        tiles: this.state.tiles
+      };
+
       return _react2['default'].createElement(
         'div',
         null,
-        _react2['default'].createElement(_HeaderJsx2['default'], {
-          message: this.state.message,
-          foundWinner: this.state.foundWinner,
-          score: this.state.score,
-          clickCounter: this.state.clickCounter
-        }),
+        _react2['default'].createElement(_HeaderJsx2['default'], props),
         _react2['default'].createElement('br', null),
         ' ',
         _react2['default'].createElement('br', null),
         ' ',
         _react2['default'].createElement('br', null),
-        _react2['default'].createElement(_GameboardJsx2['default'], { tiles: this.state.tiles })
+        _react2['default'].createElement(_GameboardJsx2['default'], { tiles: props.tiles })
       );
     }
   }]);
@@ -20859,22 +20862,18 @@ var PlayAgain = (function (_Component) {
   _createClass(PlayAgain, [{
     key: 'render',
     value: function render() {
-      var playAgainBtn = _react2['default'].createElement('p', null);
+      var hide = undefined;
 
       if (this.props.foundWinner == true || this.props.clickCounter == 9) {
-        playAgainBtn = _react2['default'].createElement(
-          'button',
-          { onClick: this.handleClick },
-          'Play Again'
-        );
-      } else if (this.props.clickCounter > 0) {
-        playAgainBtn = _react2['default'].createElement('p', null);
+        hide = "";
+      } else {
+        hide = "hidden";
       }
 
       return _react2['default'].createElement(
-        'div',
-        null,
-        playAgainBtn
+        'button',
+        { className: hide, onClick: this.handleClick },
+        'Play Again'
       );
     }
   }, {
@@ -21047,10 +21046,16 @@ var Tile = (function (_Component) {
         srcImg = '../img/O.png';
       }
 
+      var tileProps = {
+        index: this.props.index,
+        src: srcImg,
+        onClick: this.handleTileClick
+      };
+
       return _react2['default'].createElement(
         'td',
         null,
-        _react2['default'].createElement('img', { index: this.props.index, src: srcImg, onClick: this.handleTileClick })
+        _react2['default'].createElement('img', tileProps)
       );
     }
   }, {
@@ -21170,20 +21175,28 @@ function isEven(_x) {
 function findWinner() {
   var win = [[_tiles[0], _tiles[1], _tiles[2]], [_tiles[3], _tiles[4], _tiles[5]], [_tiles[6], _tiles[7], _tiles[8]], [_tiles[0], _tiles[3], _tiles[6]], [_tiles[1], _tiles[4], _tiles[7]], [_tiles[2], _tiles[5], _tiles[8]], [_tiles[0], _tiles[4], _tiles[8]], [_tiles[2], _tiles[4], _tiles[6]]];
 
-  for (var i in win) {
+  var _loop = function (i) {
+    var shortenIf = function shortenIf(indexOfWinState, xo) {
+      return winIndex[indexOfWinState] == xo;
+    };
+
     var winIndex = win[i];
 
-    if (winIndex[0] == "x" && winIndex[1] == "x" && winIndex[2] == "x") {
+    if (shortenIf(0, 'x') && shortenIf(1, 'x') && shortenIf(2, 'x')) {
       _winnerFound = true;
       _score.scoreX += 1;
       _alertMessage = "X wins!";
     }
 
-    if (winIndex[0] == "o" && winIndex[1] == "o" && winIndex[2] == "o") {
+    if (shortenIf(0, 'o') && shortenIf(1, 'o') && shortenIf(2, 'o')) {
       _winnerFound = true;
       _score.scoreO += 1;
       _alertMessage = "O wins!";
     }
+  };
+
+  for (var i in win) {
+    _loop(i);
   }
 
   if (_clickCounter == 9 && _winnerFound == false) {
@@ -21212,11 +21225,13 @@ function playAgain() {
 var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
 
   getState: function getState() {
-    return { tiles: _tiles,
+    return {
+      tiles: _tiles,
       score: _score,
       foundWinner: _winnerFound,
       clickCounter: _clickCounter,
-      message: _alertMessage };
+      message: _alertMessage
+    };
   },
 
   // emit change event to any view listening

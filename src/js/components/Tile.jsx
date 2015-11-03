@@ -18,9 +18,15 @@ export default class Tile extends Component{
       srcImg = '../img/O.png'
     }
 
+    const tileProps = {
+      index: this.props.index,
+      src: srcImg,
+      onClick: this.handleTileClick
+    };
+
     return (
       <td>
-        <img index={this.props.index} src={srcImg} onClick={this.handleTileClick}/>
+        <img {...tileProps}/>
       </td>
     );
   }
