@@ -19808,7 +19808,7 @@ exports['default'] = AppContainer;
 module.exports = exports['default'];
 
 
-},{"../stores/Store.js":175,"./Gameboard.jsx":168,"./Header.jsx":169,"react":163}],168:[function(require,module,exports){
+},{"../stores/Store.js":176,"./Gameboard.jsx":168,"./Header.jsx":169,"react":163}],168:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -19935,6 +19935,10 @@ var _PlayAgainJsx = require('./PlayAgain.jsx');
 
 var _PlayAgainJsx2 = _interopRequireDefault(_PlayAgainJsx);
 
+var _TitleJsx = require('./Title.jsx');
+
+var _TitleJsx2 = _interopRequireDefault(_TitleJsx);
+
 var Header = (function (_React$Component) {
   _inherits(Header, _React$Component);
 
@@ -19950,6 +19954,7 @@ var Header = (function (_React$Component) {
       return _react2['default'].createElement(
         'div',
         { className: 'page-header' },
+        _react2['default'].createElement(_TitleJsx2['default'], null),
         _react2['default'].createElement(_ScoreboardJsx2['default'], { score: this.props.score }),
         _react2['default'].createElement(_PlayAgainJsx2['default'], { clickCounter: this.props.clickCounter, foundWinner: this.props.foundWinner }),
         _react2['default'].createElement(_MessageJsx2['default'], { message: this.props.message })
@@ -19965,7 +19970,7 @@ exports['default'] = Header;
 module.exports = exports['default'];
 
 
-},{"./Message.jsx":170,"./PlayAgain.jsx":171,"./Scoreboard.jsx":172,"react":163}],170:[function(require,module,exports){
+},{"./Message.jsx":170,"./PlayAgain.jsx":171,"./Scoreboard.jsx":172,"./Title.jsx":174,"react":163}],170:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20274,6 +20279,10 @@ module.exports = exports['default'];
 },{"../actions/Actions.js":166,"react":163}],174:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _react = require('react');
@@ -20284,7 +20293,35 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-/* I get warnings in console about needing this, not sure how to use it */
+var Title = function Title() {
+  return _react2['default'].createElement(
+    'div',
+    null,
+    _react2['default'].createElement(
+      'h1',
+      null,
+      _react2['default'].createElement('img', { width: '20%', height: 'auto', src: 'https://media-mediatemple.netdna-ssl.com/wp-content/uploads/2015/06/flux-react2.png' }),
+      'Tic Tac Toe'
+    )
+  );
+};
+
+exports['default'] = Title;
+module.exports = exports['default'];
+
+
+},{"react":163,"react-dom":7}],175:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _componentsAppContainerJsx = require('./components/AppContainer.jsx');
 
@@ -20293,7 +20330,7 @@ var _componentsAppContainerJsx2 = _interopRequireDefault(_componentsAppContainer
 _reactDom2['default'].render(_react2['default'].createElement(_componentsAppContainerJsx2['default'], null), document.getElementById('main'));
 
 
-},{"./components/AppContainer.jsx":167,"react":163,"react-dom":7}],175:[function(require,module,exports){
+},{"./components/AppContainer.jsx":167,"react":163,"react-dom":7}],176:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -20475,4 +20512,4 @@ var Store = (0, _objectAssign2['default'])({}, _events.EventEmitter.prototype, {
 module.exports = Store;
 
 
-},{"../Constants":164,"../Dispatcher.js":165,"events":1,"object-assign":5}]},{},[174]);
+},{"../Constants":164,"../Dispatcher.js":165,"events":1,"object-assign":5}]},{},[175]);
