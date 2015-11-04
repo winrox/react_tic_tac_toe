@@ -1,21 +1,14 @@
 import React from 'react';
+import BaseComponent from './BaseComponent.jsx';
 import Gameboard from './Gameboard.jsx';
 import Store from '../stores/Store.js';
 import Header from './Header.jsx';
 
-export default class AppContainer extends React.Component{
+export default class AppContainer extends BaseComponent {
   constructor() {
     super();
-    this.state = Store.getState();
-    this.onChange = this.onChange.bind(this);
-  }
-
-  componentDidMount() {
-    Store.addChangeListener(this.onChange);
-  }
-
-  onChange() {
-    this.setState(Store.getState());
+    const state = this.StateOrigin();
+    this._bind('onChange');
   }
 
   render() {
