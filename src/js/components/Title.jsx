@@ -3,7 +3,8 @@ import React from 'react';
 const Title = () => (
   <div>
     <h1>
-      <img width="20%" height="auto" src="https://media-mediatemple.netdna-ssl.com/wp-content/uploads/2015/06/flux-react2.png"/>
+      <img width="10%" height="auto" src="https://cdn.auth0.com/blog/react-js/react.png"/>
+      <img src="https://facebook.github.io/flux/img/flux_logo.svg"/>
       Tic Tac Toe
     </h1>
   </div>
