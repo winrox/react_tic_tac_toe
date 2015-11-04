@@ -17,7 +17,7 @@ let _winnerFound = false;
 
 /* -----tile click functions----- */
 
-function determineXorO(tileIndex) {
+const determineXorO = (tileIndex) => {
   _clickCounter = _clickCounter + 1;
 
     if(_winnerFound == true) {
@@ -50,7 +50,7 @@ function determineXorO(tileIndex) {
     findWinner();
 }
 
-function isEven(num) {
+const isEven = (num) => {
   if (num === 0){
     return true;
   } else if(num === 1) {
@@ -63,7 +63,7 @@ function isEven(num) {
   }
 }
 
-function findWinner(){
+const findWinner = () => {
   const win = [
   [_tiles[0],_tiles[1],_tiles[2]],
   [_tiles[3],_tiles[4],_tiles[5]],
@@ -78,7 +78,7 @@ function findWinner(){
   for(let i in win) {
     const winIndex = win[i];
 
-    function dryIf(indexOfWinState, xo) {
+    const dryIf = (indexOfWinState, xo) => {
       return (winIndex[indexOfWinState] == xo);
     }
 
@@ -102,14 +102,14 @@ function findWinner(){
 
 /* -----Play Again button click functions----- */
 
-function clearGame() {
+const clearGame = () => {
   /* iterate through each tile in tiles */
   for(let index in _tiles) {
     _tiles[index] = '';
   }
 }
 
-function playAgain() {
+const playAgain = () => {
   clearGame();
   _alertMessage = "";
   _winnerFound = false;

@@ -1,7 +1,7 @@
 import Dispatcher from '../Dispatcher.js';
 import Constants from'../Constants.js';
 
-function Dispatch(actionType, data){
+const Dispatch = (actionType, data) => {
   Dispatcher.handleViewAction({actionType: actionType, data: data})
 }
 
