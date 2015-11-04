@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Message = (props) => (
+ const Message = (props) => (
   <div className="center-text">
     <h2 className="alert-message">
       {props.message}
