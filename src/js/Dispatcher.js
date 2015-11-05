@@ -11,4 +11,4 @@ const AppDispatcher = Assign(new Dispatcher(), {
   }
 });
 
-module.exports = AppDispatcher;
+export default AppDispatcher;

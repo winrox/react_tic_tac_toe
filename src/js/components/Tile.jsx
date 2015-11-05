@@ -1,10 +1,14 @@
 import React from 'react';
 import Actions from '../actions/Actions.js';
 
-export default class Tile extends React.Component{
+class Tile extends React.Component{
   constructor() {
     super();
     this.handleTileClick = this.handleTileClick.bind(this);
+   }
+
+   handleTileClick() {
+     Actions.changeTile(this.props.index);
    }
 
   render() {
@@ -25,12 +29,10 @@ export default class Tile extends React.Component{
 
     return (
       <td>
-        <img {...tileProps}/>
+        <img {...tileProps} />
       </td>
     );
   }
-
-  handleTileClick() {
-    Actions.changeTile(this.props.index);
-  }
 };
+
+export default Tile;

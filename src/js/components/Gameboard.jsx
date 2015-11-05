@@ -1,7 +1,7 @@
 import React from 'react';
 import Tile from './Tile.jsx';
 
-export default class Gameboard extends React.Component{
+class Gameboard extends React.Component{
   eachTileInRow(sliceStart, sliceEnd) {
     const allTiles = this.props.tiles;
     let row = [];
@@ -36,3 +36,5 @@ export default class Gameboard extends React.Component{
     )
   }
 };
+
+export default Gameboard;

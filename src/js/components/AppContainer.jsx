@@ -4,11 +4,11 @@ import Gameboard from './Gameboard.jsx';
 import Store from '../stores/Store.js';
 import Header from './Header.jsx';
 
-export default class AppContainer extends BaseComponent {
+class AppContainer extends BaseComponent {
   constructor() {
     super();
     const state = this.StateOrigin();
-    this._bind('onChange');
+    this.binds('onChange');
   }
 
   render() {
@@ -29,3 +29,5 @@ export default class AppContainer extends BaseComponent {
     );
   }
 };
+
+export default AppContainer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Store from '../stores/Store.js';
 
-export default class BaseComponent extends React.Component {
+class BaseComponent extends React.Component {
   StateOrigin() {
     this.state = Store.getState();
   }
@@ -14,7 +14,9 @@ export default class BaseComponent extends React.Component {
     Store.addChangeListener(this.onChange);
   }
 
-  _bind(...methods) {
+  binds(...methods) {
     methods.forEach((method) => this[method] = this[method].bind(this) );
   }
 }
+
+export default BaseComponent;

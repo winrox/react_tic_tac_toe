@@ -8,7 +8,10 @@ const Header = (props) => (
   <div className="page-header">
     <Title />
     <Scoreboard score={props.score} />
-    <PlayAgain clickCounter={props.clickCounter} foundWinner={props.foundWinner}/>
+    <PlayAgain
+      clickCounter={props.clickCounter} 
+      foundWinner={props.foundWinner}
+    />
     <Message message={props.message} />
   </div>
 );
